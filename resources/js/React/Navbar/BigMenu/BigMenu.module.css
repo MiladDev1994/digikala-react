@@ -1,0 +1,14 @@
+.searchBox{
+    height: 70px;
+}
+
+@media screen and (max-width: 1024px){
+    .logoBox{
+        display: none;
+    }
+}
+@media screen and (max-width: 600px){
+    .basketBox{
+        display: none;
+    }
+}

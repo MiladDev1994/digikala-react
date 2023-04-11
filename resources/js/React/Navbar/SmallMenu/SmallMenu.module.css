@@ -1,0 +1,14 @@
+.box{
+    height: 50px;
+    display: none;
+    border-bottom: 1px solid #333333;
+}
+
+.box i{
+    cursor: pointer;
+}
+@media (max-width: 1024px) {
+   .box{
+       display: flex;
+   }
+}
