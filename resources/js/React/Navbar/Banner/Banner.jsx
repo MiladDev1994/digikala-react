@@ -32,7 +32,7 @@ const Banner = () => {
                     backgroundImage:`url(${baseUrl}/images/${banner[8].image})`,
                     backgroundPosition:"center",
                     backgroundSize:"cover"
-                }}></div> : null
+                }}> </div> : null
             }
 
         </div>

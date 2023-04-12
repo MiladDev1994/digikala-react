@@ -1,33 +1,89 @@
-import React, {useEffect, useRef, useState} from 'react';
-import styles from './BigMenu.module.css';
-import digiLogo from '../../../../../public/image/logo.svg';
+import React, {useState} from 'react';
+import styles from './BigMenu.module.css'
+import {Link} from "react-router-dom";
 
-const BigMenu = () => {
-    const logoWidth = useRef();
-    const basketWidth = useRef();
-    const [windowWidth , setWindowWidth] = useState(window.screen.width);
-    const [searchWidth , setSearchWidth] = useState(0);
+const BigMenu = ({scroll}) => {
 
-    const windowHandler = () => {
-        setWindowWidth(window.screen.width)
-
-    }
-    window.addEventListener('resize' , windowHandler);
-
-
-    // useEffect(() => {
-    //     let qqq = basketWidth.current.scrollWidth;
-    //     let www = logoWidth.current.scrollWidth;
-    //     let rrr = windowWidth;
-    //     let ttt = rrr - www - qqq - 120 + 'px';
-    // } , [windowWidth])
+    const [snake , setSnake] = useState({
+        location: '0px',
+        width: '0px',
+    });
     return (
-        <div className={`text-light p-4 ${styles.searchBox}`} dir={'rtl'}>
-            <div ref={logoWidth} className={`ms-5 float-end ${styles.logoBox}`}>
-                <img src={digiLogo} alt={'logo'} />
+        <div className={`${scroll ? styles.BoxHidden : styles.BoxShow} bg-dark text-light shadow`} dir={'rtl'}>
+            <div className={`${styles.selection} d-flex align-items-center justify-content-between px-4`}>
+                <div className={"position-relative"}>
+
+                    <div className={`${styles.ul}`}>
+
+                        <li
+                            className={'d-flex align-items-center justify-content-center '}
+                            onMouseOver={() => setSnake({location: "13px" , width: "97px"})}
+                            onMouseLeave={() => setSnake({location: "13px" , width: "0px"})}
+                            style={{cursor:"pointer"}}
+                        >
+                            <i className={'bi-list h5 mt-2'} />
+                            <div className={`${styles.menuFont}`}>دسته&zwnj;بندی&zwnj;کالاها</div>
+                        </li>
+
+                        <li
+                            onMouseOver={() => setSnake({location: "135px" , width: "78px"})}
+                            onMouseLeave={() => setSnake({location: "135px" , width: "0px"})}
+                        >
+                            <Link className={'d-flex align-items-center justify-content-center'} to={'/#'}>
+                                <i className={'bi-list h5 mt-2'} />
+                                <div>سوپرمارکت</div>
+                            </Link>
+                        </li>
+
+                        <li
+                            onMouseOver={() => setSnake({location: "237px" , width: "87px"})}
+                            onMouseLeave={() => setSnake({location: "237px" , width: "0px"})}
+                        >
+                            <Link className={'d-flex align-items-center justify-content-center'} to={'/#'}>
+                                <i className={'bi-list h5 mt-2'} />
+                                <div>پرفروش&zwnj;ترین&zwnj;ها</div>
+                            </Link>
+                        </li>
+
+                        <li
+                            onMouseOver={() => setSnake({location: "355px" , width: "125px"})}
+                            onMouseLeave={() => setSnake({location: "355px" , width: "0px"})}
+                        >
+                            <Link className={'d-flex align-items-center justify-content-center'} to={'/#'}>
+                                <i className={'bi-list h5 mt-2'} />
+                                <div>تخفیف&zwnj;ها و پیشنهاد&zwnj;ها</div>
+                            </Link>
+                        </li>
+
+                        <li
+                            onMouseOver={() => setSnake({location: "508px" , width: "85px"})}
+                            onMouseLeave={() => setSnake({location: "508px" , width: "0px"})}
+                            // className={'border-start'}
+                        >
+                            <Link className={'d-flex align-items-center justify-content-center'} to={'/#'}>
+                                <i className={'bi-list h5 mt-2'} />
+                                <div>شگفت&zwnj;انگیز&zwnj;ها</div>
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link className={'d-flex align-items-center justify-content-center h-100'} to={'/#'}>
+                                <div>در دیجیکالا بفروشید!</div>
+                            </Link>
+                        </li>
+
+                    </div>
+                    <div className={styles.snakeBox}>
+                        <div className={styles.snake} style={{marginRight:snake.location , width:snake.width}}></div>
+                    </div>
+                </div>
+
+                <div className={'float-start d-flex align-items-center justify-content-center'}>
+                    <i className={'bi-geo-alt me-1 opacity-75 ms-1'} />
+                    <div className={styles.location}>شهر خود را انتخاب کنید</div>
+                </div>
             </div>
-            <div className={"float-end bg-primary"} style={windowWidth > 1024 ? {width:`calc(${windowWidth}px - 150px - 250px - 120px)`} : windowWidth > 600 ? {width:`calc(${windowWidth}px - 250px - 120px)`} : {width:`calc(${windowWidth}px - 50px)`} }>Search</div>
-            <div ref={basketWidth} className={`float-start bg-warning ${styles.basketBox}`} style={{width:"250px"}}>Basket</div>
+
 
         </div>
     );

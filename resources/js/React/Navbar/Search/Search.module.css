@@ -1,0 +1,80 @@
+.searchBox{
+    height: 70px;
+    z-index: 999;
+    border-bottom: 1px solid #3a3a3a;
+}
+.selection{
+    width: 1550px;
+    margin: auto;
+}
+.input{
+    width: 550px;
+    height: 40px;
+    background-color: #353535;
+}
+.basketBox{
+    width: 250px;
+    height: 35px;
+    display: flex;
+}
+
+.login{
+    width: 160px;
+    border: 1px solid #4c4c4c;
+}
+.login a{
+    text-decoration: none;
+    color: lightgrey;
+}
+.loginText{
+    margin-top: -6px;
+}
+.line{
+    width: 2px;
+    height: 20px;
+    background-color: #484848;
+}
+.dropdown:hover{
+    background-color: #313131;
+}
+.dropdown::after {
+    display: none!important;
+}
+
+
+.dropdownMenu{
+    width: 230px;
+    overflow: hidden;
+}
+.dropdownMenu a{
+    border-bottom: 1px solid #373737;
+    transition: 0.3s;
+    text-decoration: none;
+    color: lightgrey;
+}
+
+.dropdownMenu a:hover{
+    background-color: #3e3e3e;
+    cursor: pointer;
+}
+@media screen and (max-width: 1600px) {
+    .selection{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 1024px){
+    .logoBox{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 920px){
+    .input{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 600px){
+    .basketBox{
+        display: none;
+    }
+}

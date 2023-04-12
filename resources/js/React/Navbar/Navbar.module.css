@@ -1,6 +1,8 @@
 .box{
     height: 130px;
     transition: 0.3s;
+    position: fixed;
+    width: 100%;
 }
 
 @media (max-width: 1024px) {
