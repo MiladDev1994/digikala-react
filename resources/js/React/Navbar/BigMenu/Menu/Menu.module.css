@@ -28,6 +28,10 @@
     position: absolute;
     display: none;
 }
+.menuFooterFake{
+    width: calc(100% - 215px);
+    height: 100%;
+}
 
 .headItem:hover .menuFooter{
     display: block;

@@ -5,21 +5,12 @@ import SmallMenu from "./SmallMenu/SmallMenu";
 import Search from './Search/Search';
 import BigMenu from "./BigMenu/BigMenu";
 import axios from "axios";
+import MenuContextProvider from "./Context/MenuContextProvider";
 
 const Navbar = () => {
 
-    const [scrollY , srtScrollY] = useState(window.scrollY);
-    const [scrollLocation , setScrollLocation] = useState(false);
+    // const [menu , setMenu] = useState(false);
 
-    const scrollHandler = () => {
-        srtScrollY(window.scrollY)
-        if (scrollY > window.scrollY){
-            setScrollLocation(false)
-        }else {
-            setScrollLocation(true)
-        }
-    }
-    window.addEventListener('scroll' , scrollHandler)
 
 
     const [category , setCategory] = useState([]);
@@ -29,15 +20,18 @@ const Navbar = () => {
     } , [])
 
     return (
-        <div className={`${styles.box} bg-dark`}>
-            <div className={'w-100'} style={{position:"absolute" , zIndex:"9"}}>
-                <Banner />
-                <SmallMenu />
-                <Search />
-            </div>
+        <MenuContextProvider>
+            <div className={`${styles.box} bg-dark`}>
+                <div className={'w-100'} style={{position:"absolute" , zIndex:"9"}}>
+                    <Banner />
+                    <SmallMenu />
+                    <Search />
+                </div>
 
-            <BigMenu scroll={scrollLocation} category={category}/>
-        </div>
+                <BigMenu category={category}/>
+            </div>
+        </MenuContextProvider>
+
     );
 };
 

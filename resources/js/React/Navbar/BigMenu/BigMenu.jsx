@@ -1,15 +1,31 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from './BigMenu.module.css'
 import {Link} from "react-router-dom";
 import Menu from "./Menu/Menu";
+import {MenuContext} from "../Context/MenuContextProvider";
 
-const BigMenu = ({scroll , category}) => {
+const BigMenu = () => {
 
     const [snake , setSnake] = useState({
         location: '0px',
         width: '0px',
     });
-    const [menu , setMenu] = useState(false);
+
+    const {menu, setMenu} = useContext(MenuContext)
+
+    const [scrollY , setScrollY] = useState(window.scrollY);
+    const [scrollLocation , setScrollLocation] = useState(false);
+
+    const scrollHandler = () => {
+        setScrollY(window.scrollY)
+        if (scrollY > window.scrollY){
+            setScrollLocation(false)
+        }else {
+            setScrollLocation(true)
+        }
+    }
+    window.addEventListener('scroll' , scrollHandler)
+
 
     const menuHandler = (status) => {
         if (status.show){
@@ -25,7 +41,7 @@ const BigMenu = ({scroll , category}) => {
 
     }
     return (
-        <div className={`${scroll ? styles.BoxHidden : styles.BoxShow} bg-dark text-light shadow`} dir={'rtl'}>
+        <div className={`${scrollLocation ? styles.BoxHidden : styles.BoxShow} bg-dark text-light shadow`} dir={'rtl'}>
             <div className={`${styles.selection} d-flex align-items-center justify-content-between px-4`}>
                 <div className={"position-relative"}>
 
@@ -38,7 +54,7 @@ const BigMenu = ({scroll , category}) => {
                             style={{cursor:"pointer"}}
                         >
                             {
-                                menu ? <Menu category={category}/> : null
+                                menu ? <Menu/> : null
                             }
 
                             <i className={'bi-list h5 mt-2'} />
@@ -99,7 +115,7 @@ const BigMenu = ({scroll , category}) => {
                 </div>
 
                 <div className={'float-start d-flex align-items-center justify-content-center'}>
-                    <i className={'bi-geo-alt me-1 opacity-75 ms-1'} />
+                    <i className={'bi-geo-alt  opacity-75 mx-1'} />
                     <div className={styles.location}>شهر خود را انتخاب کنید</div>
                 </div>
             </div>

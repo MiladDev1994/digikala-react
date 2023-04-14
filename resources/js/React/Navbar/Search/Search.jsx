@@ -23,7 +23,7 @@ const Search = () => {
             <div ref={selectionWidth} className={`${styles.selection} d-flex align-items-center justify-content-between`}>
 
                 <div className={'h-100 d-flex align-items-center justify-content-between'}>
-                    <div ref={logoWidth} className={`ms-5 ${styles.logoBox}`}>
+                    <div ref={logoWidth} className={`me-5 ${styles.logoBox}`}>
                         <img src={digiLogo} alt={'logo'} />
                     </div>
                     <div style={
@@ -44,7 +44,7 @@ const Search = () => {
                                             <i className={'bi-search ms-3 opacity-50 h5 mt-2 me-2'}/>
                                             <input
                                                 type={'text'}
-                                                className={'input-group-text bg-dark border-0 text-light text-end w-100'}
+                                                className={'input-group-text bg-dark border-0 text-light text-start w-100'}
                                                 placeholder={"جستوجو...."}
                                                 style={{outline:"none"}}
                                                 value={searchValue}
@@ -63,7 +63,7 @@ const Search = () => {
                                     /> :
                                     null
                             }
-                            <i className={'bi-search ms-3 opacity-50 h5 mt-2 me-1'}/>
+                            <i className={'bi-search me-3 opacity-50 h5 mt-2 ms-1'}/>
                             <div className={'opacity-50 w-100'} onClick={() => setSearchView(prevSearch => !prevSearch)}>
                                 {
                                     !!searchValue  ?  searchValue:
@@ -106,15 +106,15 @@ const Search = () => {
                                 <i className={'bi-chevron-left'} />
                             </Link>
                             <Link to={'#'} className={'d-flex align-items-center justify-content-start px-4'}>
-                                <i className={'bi-bag h5 ms-2'} />
+                                <i className={'bi-bag h5 me-2'} />
                                 <p className={'mt-1'}>سفارشات</p>
                             </Link>
                             <Link to={'#'} className={'d-flex align-items-center justify-content-start px-4'}>
-                                <i className={'bi-heart  h5 ms-2'} />
+                                <i className={'bi-heart  h5 me-2'} />
                                 <p className={'mt-1'}>علاقه&zwnj;مندی</p>
                             </Link>
                             <Link to={'#'} className={'d-flex align-items-center justify-content-start px-4'} style={{border:0}}>
-                                <i className={'bi-box-arrow-right h5 ms-2'} />
+                                <i className={'bi-box-arrow-right h5 me-2'} />
                                 <p className={'mt-1'}>خروج از حساب کاربری</p>
                             </Link>
                         </Dropdown.Menu>
