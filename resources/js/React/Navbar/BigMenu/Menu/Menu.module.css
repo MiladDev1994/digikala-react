@@ -1,0 +1,41 @@
+.Box{
+    width: 800px;
+    max-height: 500px;
+    top: 39px;
+    right: 0;
+    z-index: 11;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+}
+.head{
+    width: 215px;
+    max-height: 500px;
+    overflow: scroll;
+    background-color: #2d2d2d;
+    scrollbar-width:none;
+
+}
+.headItem{
+    color: lightgrey;
+    font-size: 13px;
+}
+
+.menuFooter{
+    width: calc(100% - 215px);
+    height: 100%;
+    right: 215px;
+    top: 0;
+    position: absolute;
+    display: none;
+}
+
+.headItem:hover .menuFooter{
+    display: block;
+}
+.menuItem{
+    transition: 0.2s;
+}
+.menuItem:hover{
+    color: #f84747;
+    cursor: pointer;
+}

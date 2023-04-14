@@ -1,9 +1,10 @@
-import React, { useState} from 'react';
+import React, { useState , useEffect } from 'react';
 import styles from './Navbar.module.css';
 import Banner from "./Banner/Banner";
 import SmallMenu from "./SmallMenu/SmallMenu";
 import Search from './Search/Search';
 import BigMenu from "./BigMenu/BigMenu";
+import axios from "axios";
 
 const Navbar = () => {
 
@@ -18,10 +19,14 @@ const Navbar = () => {
             setScrollLocation(true)
         }
     }
-
-
     window.addEventListener('scroll' , scrollHandler)
 
+
+    const [category , setCategory] = useState([]);
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8000/api/category')
+            .then(response => setCategory(response.data))
+    } , [])
 
     return (
         <div className={`${styles.box} bg-dark`}>
@@ -31,7 +36,7 @@ const Navbar = () => {
                 <Search />
             </div>
 
-            <BigMenu scroll={scrollLocation}/>
+            <BigMenu scroll={scrollLocation} category={category}/>
         </div>
     );
 };

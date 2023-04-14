@@ -10,6 +10,8 @@ const Search = () => {
     const basketWidth = useRef();
     const selectionWidth = useRef();
     const [windowWidth , setWindowWidth] = useState(window.screen.width);
+    const [searchView , setSearchView] = useState(false);
+    const [searchValue , setSearchValue] = useState('')
 
     const windowHandler = () => {
         setWindowWidth(window.screen.width)
@@ -30,14 +32,55 @@ const Search = () => {
                                 windowWidth > 600 ? {width:`calc(${windowWidth}px - 250px - 120px)`} :
                                     {width:`calc(${windowWidth}px - 50px)`} }
                     >
-                        <div className={`${styles.input} rounded-3 d-flex align-items-center justify-content-start p-2 shadow`}>
+                        <div
+                            className={`${styles.input} rounded-3 d-flex align-items-center justify-content-start p-2 shadow`}
+
+                        >
+
+                            {
+                                searchView ?
+                                    <div className={`${styles.searchData} bg-dark shadow rounded-3`}>
+                                        <div className={"d-flex border-bottom border-secondary border-opacity-25"}>
+                                            <i className={'bi-search ms-3 opacity-50 h5 mt-2 me-2'}/>
+                                            <input
+                                                type={'text'}
+                                                className={'input-group-text bg-dark border-0 text-light text-end w-100'}
+                                                placeholder={"جستوجو...."}
+                                                style={{outline:"none"}}
+                                                value={searchValue}
+                                                onChange={event => setSearchValue(event.target.value)}
+                                            />
+
+                                        </div>
+                                    </div> :
+                                    null
+                            }
+                            {
+                                searchView ?
+                                    <i
+                                        className={`${styles.closeBtn} bi-x-lg`} style={{zIndex:10}}
+                                        onClick={() => setSearchView(prevSearch => !prevSearch)}
+                                    /> :
+                                    null
+                            }
                             <i className={'bi-search ms-3 opacity-50 h5 mt-2 me-1'}/>
-                            <div className={'opacity-50'}>جستوجو...</div>
+                            <div className={'opacity-50 w-100'} onClick={() => setSearchView(prevSearch => !prevSearch)}>
+                                {
+                                    !!searchValue  ?  searchValue:
+                                        'جستوجو...'
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
 
-
+                {
+                    searchView ? <div
+                            className={`${styles.searchFake} bg-dark opacity-50 position-absolute`}
+                            onClick={() => setSearchView(prevSearch => !prevSearch)}
+                        > </div>
+                        : null
+                }
 
                 <div ref={basketWidth} className={`align-items-center justify-content-around px-2 ${styles.basketBox}`}>
 

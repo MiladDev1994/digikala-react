@@ -1,13 +1,29 @@
 import React, {useState} from 'react';
 import styles from './BigMenu.module.css'
 import {Link} from "react-router-dom";
+import Menu from "./Menu/Menu";
 
-const BigMenu = ({scroll}) => {
+const BigMenu = ({scroll , category}) => {
 
     const [snake , setSnake] = useState({
         location: '0px',
         width: '0px',
     });
+    const [menu , setMenu] = useState(false);
+
+    const menuHandler = (status) => {
+        if (status.show){
+            setSnake({location: "13px" , width: "97px"});
+            setMenu(true);
+        }else {
+            setSnake({location: "13px" , width: "0px"});
+            setMenu(false);
+        }
+
+
+
+
+    }
     return (
         <div className={`${scroll ? styles.BoxHidden : styles.BoxShow} bg-dark text-light shadow`} dir={'rtl'}>
             <div className={`${styles.selection} d-flex align-items-center justify-content-between px-4`}>
@@ -16,11 +32,15 @@ const BigMenu = ({scroll}) => {
                     <div className={`${styles.ul}`}>
 
                         <li
-                            className={'d-flex align-items-center justify-content-center '}
-                            onMouseOver={() => setSnake({location: "13px" , width: "97px"})}
-                            onMouseLeave={() => setSnake({location: "13px" , width: "0px"})}
+                            className={'d-flex align-items-center justify-content-center position-relative'}
+                            onMouseOver={() => menuHandler({show:true})}
+                            onMouseLeave={() => menuHandler({show:false})}
                             style={{cursor:"pointer"}}
                         >
+                            {
+                                menu ? <Menu category={category}/> : null
+                            }
+
                             <i className={'bi-list h5 mt-2'} />
                             <div className={`${styles.menuFont}`}>دسته&zwnj;بندی&zwnj;کالاها</div>
                         </li>
@@ -74,7 +94,7 @@ const BigMenu = ({scroll}) => {
 
                     </div>
                     <div className={styles.snakeBox}>
-                        <div className={styles.snake} style={{marginRight:snake.location , width:snake.width}}></div>
+                        <div className={styles.snake} style={{marginRight:snake.location , width:snake.width}}> </div>
                     </div>
                 </div>
 
@@ -85,6 +105,11 @@ const BigMenu = ({scroll}) => {
             </div>
 
 
+            {
+                menu ?
+                    <div className={`${styles.menuFake} bg-dark opacity-50`}> </div> :
+                    null
+            }
         </div>
     );
 };
