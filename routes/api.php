@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\categoryController;
 use App\Http\Controllers\Api\HomeViewController;
+use App\Http\Controllers\Api\SliderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('homeView' , HomeViewController::class);
 Route::apiResource('category' , categoryController::class);
+Route::apiResource('carousel' , SliderController::class);

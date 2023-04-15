@@ -3,6 +3,7 @@
     transition: 0.3s;
     position: fixed;
     width: 100%;
+    z-index: 20;
 }
 
 @media (max-width: 1024px) {

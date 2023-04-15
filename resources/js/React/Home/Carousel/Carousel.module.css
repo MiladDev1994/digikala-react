@@ -1,0 +1,26 @@
+.carouselBox{
+    width: 1900px;
+}
+.imageBox{
+    height: 400px!important;
+    background-size: cover;
+    background-position: center;
+    transition: 0.3s;
+}
+.spinner{
+    height: 400px;
+}
+@media screen and (max-width: 1900px){
+    .carouselBox{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 1300px){
+    .imageBox{
+        height: 300px!important;
+    }
+    .spinner{
+        height: 300px;
+    }
+}
+

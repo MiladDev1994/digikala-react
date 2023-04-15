@@ -1,0 +1,17 @@
+.headerFake{
+    height: 170px;
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 1024px){
+    .headerFake{
+        height: 150px;
+    }
+
+}
+
+@media screen and (max-width: 600px){
+    .headerFake{
+        height: 120px;
+    }
+}

@@ -1,0 +1,11 @@
+.Box{
+    transition: 0.3s;
+}
+
+.Box div{
+    transition: 0.3s;
+}
+.P{
+    white-space: nowrap;
+    font-size: 13px;
+}
