@@ -3,11 +3,12 @@ import styles from './Menu.module.css'
 import logo from "../../../../../../public/image/logo.svg";
 import {Link} from "react-router-dom";
 import {useSelector , useDispatch} from "react-redux";
-import {fetchApi} from "../../../Redux/Category/categoryAction";
+import {fetchApi} from "../../Redux/Category/categoryAction";
 
 const Menu = () => {
     const data = useSelector(element => element.category.data);
     const dispatch = useDispatch();
+
     const menuItems = [
         {title: "سوپرمارکت", link: `1`, icon: 'bi-list'},
         {title: `پرفروش ترین ها`, link: `2`, icon: 'bi-list'},

@@ -1,0 +1,19 @@
+.items{
+    width: 180px;
+    text-decoration: none;
+    color: black!important;
+}
+.detail{
+    width: 100%;
+    height: 60px;
+}
+.priceOff{
+    font-size: 14px;
+    font-weight: 700;
+}
+.price{
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.55);
+    text-decoration:1px line-through rgba(0, 0, 0, 0.49);
+
+}

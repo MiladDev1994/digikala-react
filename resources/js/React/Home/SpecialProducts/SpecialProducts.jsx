@@ -3,8 +3,16 @@ import styles from './SpecialProducts.module.css';
 import Logo from '../../../../../public/images/box.png';
 import Text from '../../../../../public/images/amazing-typo.svg'
 import {Link} from "react-router-dom";
+import Item from "./Item/Item";
+import {useSelector , useDispatch} from "react-redux";
+import {fetchHomeApi} from "../Redux/Home/HomeAction";
 
-const SpecialProducts = ({product}) => {
+
+const SpecialProducts = () => {
+
+    const product = useSelector(item => item.home.data);
+    const dispatch = useDispatch();
+    // console.log(product)
 
     const dragBox = useRef();
     const Right = useRef();
@@ -29,6 +37,7 @@ const SpecialProducts = ({product}) => {
     const upHandler = (e) => {
         lets = false;
     }
+
     const rightHandler = () => {
         dragBox.current.scrollLeft += 182;
     }
@@ -37,58 +46,54 @@ const SpecialProducts = ({product}) => {
     }
 
     useEffect(() => {
+        dispatch(fetchHomeApi());
         dragBox.current.onscroll = () => {
-            Number(dragBox.current.scrollLeft) === -2274 ? Left.current.style.display = 'none' : Left.current.style.display = 'flex';
-            Number(dragBox.current.scrollLeft) === 0 ? Right.current.style.display = 'none' : Right.current.style.display = 'flex';
+            let mainWidth = dragBox.current.scrollLeft;
+            let scrollWidth = dragBox.current.clientWidth - dragBox.current.scrollWidth
+            mainWidth === scrollWidth ? Left.current.style.display = 'none' : Left.current.style.display = 'flex';
+            Number(mainWidth) === 0 ? Right.current.style.display = 'none' : Right.current.style.display = 'flex';
         }
-    } , [])
+        } , [])
 
     return (
         <div className={'w100'} dir={'rtl'}>
             <div className={`${styles.box} m-auto position-relative`}>
                 <div
                     ref={dragBox}
-                    className={`bg-danger shadow ${styles.main}`}
+                    className={`bg-danger shadow w-100 ${styles.main}`}
                     onMouseDown={clickHandler}
                     onMouseMove={moveHandler}
                     onMouseUp={upHandler}
+                    onMouseLeave={upHandler}
                 >
-
                     <div className={'d-flex align-items-center justify-content-start px-3'} style={{width:'3834px'}}>
                         <div className={`${styles.logo} d-flex align-items-center justify-content-center flex-column p-1`}>
                             <img src={Text}/>
                             <img src={Logo}/>
-                            <Link to={1} className={'link-light'}>
-                                <p>مشاهده همه</p>
+                            <Link to={1} className={'link-light d-flex  align-items-center justify-content-center py-2'}>
+                                <div>مشاهده همه</div>
+                                <i className={'bi-chevron-left mt-1 ms-1'} />
                             </Link>
                         </div>
                         <div className={`position-relative ${styles.productBox}`}>
                             {product.length ?
                                 product[1].map((item , index) =>
-                                    <Link to={`/${item.product[0].id}`}
-                                        key={item.id}
-                                        className={`${index === 0 ? 'rounded-start' : index === 19 ? 'rounded-end' : ''} p-2 h-100 position-absolute bg-danger ${styles.items}`}
-                                        style={{right:`${index * 182}px`}}
-                                    >
-                                        <img width={'100%'} className={'rounded-3 border border-secondary border-3'} src={`http://127.0.0.1:8000/images/${item.product[0].image.split(',')[0]}`} />
-                                    </Link>
+                                    <Item key={item.id} item={item} index={index}/>
                                 )
                                 :
                                 null
                             }
                         </div>
                     </div>
-
-
                 </div>
                     <i
                         ref={Right}
-                        className={`${styles.rightBTN} bi-chevron-right align-items-center justify-content-center h5 bg-secondary text-dark shadow rounded-circle position-absolute opacity-75`}
+                        className={`${styles.BTN} ${styles.right} bi-chevron-right align-items-center justify-content-center h5 bg-light text-dark shadow rounded-circle position-absolute`}
                         onClick={rightHandler}
                     />
                     <i
                         ref={Left}
-                        className={`${styles.leftBTN} bi-chevron-left align-items-center justify-content-center h5 bg-secondary text-dark shadow rounded-circle position-absolute opacity-75`}
+                        className={`${styles.BTN} ${styles.left} bi-chevron-left align-items-center justify-content-center h5 bg-light text-dark shadow rounded-circle position-absolute`}
                         onClick={leftHandler}
                     />
 

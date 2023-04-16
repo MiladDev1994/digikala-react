@@ -1,11 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './Carousel.module.css';
 import Carousel from 'react-bootstrap/Carousel';
 import {Link} from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
+import {useSelector , useDispatch} from "react-redux";
+import {fetchHomeApi} from "../Redux/Home/HomeAction";
 
 
-const CarouselB = ({carousel}) => {
+const CarouselB = () => {
+
+    const carousel = useSelector(item => item.home.data);
+    const dispatch = useDispatch();
 
     const [index, setIndex] = useState(0);
 
@@ -13,6 +18,9 @@ const CarouselB = ({carousel}) => {
         setIndex(selectedIndex);
     };
 
+    useEffect(() => {
+        dispatch(fetchHomeApi());
+    } , [])
 
     return (
         <div className={`${styles.carouselBox} m-auto`}>
@@ -37,7 +45,5 @@ const CarouselB = ({carousel}) => {
         </div>
     );
 };
-
-    // render(<ControlledCarousel />);
 
 export default CarouselB;

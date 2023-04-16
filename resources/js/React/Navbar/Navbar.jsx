@@ -6,6 +6,9 @@ import Search from './Search/Search';
 import BigMenu from "./BigMenu/BigMenu";
 import axios from "axios";
 import MenuContextProvider from "./Context/MenuContextProvider";
+import store from "./Redux/store";
+import {Provider} from "react-redux";
+
 
 const Navbar = () => {
 
@@ -20,17 +23,20 @@ const Navbar = () => {
     } , [])
 
     return (
-        <MenuContextProvider>
-            <div className={`${styles.box} bg-dark`}>
-                <div className={'w-100'} style={{position:"absolute" , zIndex:"9"}}>
-                    <Banner />
-                    <SmallMenu />
-                    <Search />
-                </div>
+        <Provider store={store}>
+            <MenuContextProvider>
+                <div className={`${styles.box} bg-dark`}>
+                    <div className={'w-100'} style={{position:"absolute" , zIndex:"9"}}>
+                        <Banner />
+                        <SmallMenu />
+                        <Search />
+                    </div>
 
-                <BigMenu category={category}/>
-            </div>
-        </MenuContextProvider>
+                    <BigMenu category={category}/>
+                </div>
+            </MenuContextProvider>
+        </Provider>
+
 
     );
 };

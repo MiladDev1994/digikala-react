@@ -2,12 +2,13 @@ import React, {useEffect} from 'react';
 import styles from './Menu.module.css';
 import {Link} from "react-router-dom";
 import {useSelector , useDispatch} from "react-redux";
-import {fetchApi} from "../../../Redux/Category/categoryAction";
+import {fetchApi} from "../../Redux/Category/categoryAction";
 
 const Menu = () => {
 
     const category = useSelector(element => element.category.data);
     const dispatch = useDispatch();
+
 
     useEffect(() => {
         dispatch(fetchApi());
@@ -23,7 +24,7 @@ const Menu = () => {
                             <div className={`${styles.menuFooter} bg-dark p-3`} style={{cursor:'default'}}>
                                 {
                                     category.map(itemB => item.id === itemB.parent_id ?
-                                        <div className={'float-start px-3 text-start mt-2'} key={itemB.id}>
+                                        <div key={itemB.id} className={'float-start px-3 text-start mt-2'}>
                                             <Link to={`/${itemB.id}`} className={`border-start border-danger px-2  ${styles.menuItem}`} style={{fontWeight:'1000'}}>{itemB.name}</Link>
                                             {
                                                 category.map(itemC => itemB.id === itemC.parent_id ?
