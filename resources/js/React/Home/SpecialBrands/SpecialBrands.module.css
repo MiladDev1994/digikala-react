@@ -1,0 +1,45 @@
+
+.topLevel{
+    width: 1500px;
+    margin: auto;
+}
+.main{
+    width: 100%;
+}
+.box{
+    width: 100%;
+    overflow: scroll;
+    height: 200px;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+.btn{
+    top: 40%;
+    width: 45px;
+    height: 45px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.right{
+    right: -10px;
+    display: none;
+}
+.left{
+    left: -10px;
+    display: flex;
+}
+a{
+    text-decoration: none;
+}
+@media (max-width: 1600px) {
+    .topLevel{
+        width: 95%;
+    }
+}
+
+@media (max-width: 600px) {
+    .topLevel{
+        width: 90%;
+    }
+}

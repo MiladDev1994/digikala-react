@@ -2,16 +2,14 @@ import React, {useEffect} from 'react';
 import styles from './Menu.module.css';
 import {Link} from "react-router-dom";
 import {useSelector , useDispatch} from "react-redux";
-import {fetchApi} from "../../Redux/Category/categoryAction";
+// import {fetchApi} from "../../../Redux/Categories/categoryAction";
 
 const Menu = () => {
 
     const category = useSelector(element => element.category.data);
     const dispatch = useDispatch();
-
-
     useEffect(() => {
-        dispatch(fetchApi());
+        // dispatch(fetchApi());
     } , [])
     return (
         <div className={`${styles.Box} position-absolute bg-dark shadow d-flex`}>

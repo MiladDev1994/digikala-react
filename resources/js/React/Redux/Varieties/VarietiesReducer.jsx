@@ -3,24 +3,23 @@ const initialState = {
     error: '',
 }
 
-const categoryReducer = (state = initialState , action) => {
+const varietiesReducer = (state = initialState , action) => {
     switch (action.type){
-        case "REQUEST" :
+        case "REQUEST_VARIETIES" :
             return state;
-        case "SUCCESS" :
+        case "SUCCESS_VARIETIES" :
             return {
                 data: action.payload,
-                error: '',
+                error: ''
             }
-        case "ERROR" :
+        case "ERROR_VARIETIES" :
             return {
                 data: [],
-                error: action.payload
+                error: action.payload,
             }
         default :
             return state;
     }
 }
 
-
-export default categoryReducer;
+export default varietiesReducer;

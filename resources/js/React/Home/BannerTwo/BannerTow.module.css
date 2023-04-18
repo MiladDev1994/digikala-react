@@ -1,0 +1,9 @@
+.box{
+    width: 1600px;
+    margin: auto;
+}
+@media screen and (max-width: 1600px) {
+    .box{
+        width: 100%;
+    }
+}

@@ -12,4 +12,13 @@ class Category extends Model
     public function Child(){
         return $this->hasMany(Category::class ,'parent_id' , 'id');
     }
+
+    public function products(){
+        return $this->morphedByMany(Product::class , 'categoryable');
+    }
+
+    public function varieties()
+    {
+        return $this->morphedByMany(Variety::class , 'categoryable');
+    }
 }

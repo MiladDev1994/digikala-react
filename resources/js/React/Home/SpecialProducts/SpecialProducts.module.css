@@ -2,7 +2,7 @@
 
 .box{
     width: 1600px;
-    padding: 0 20px;
+    padding: 0 17px;
     transition: 0.3s;
 }
 .main{
@@ -41,13 +41,6 @@
     left: 25px;
     display: flex;
 }
-
-.logo a{
-    text-decoration: none;
-    font-size: 15px;
-    transition: 0.2s;
-}
-
 
 @media screen and (max-width: 1600px) {
     .box{

@@ -3,7 +3,7 @@ import styles from './Menu.module.css'
 import logo from "../../../../../../public/image/logo.svg";
 import {Link} from "react-router-dom";
 import {useSelector , useDispatch} from "react-redux";
-import {fetchApi} from "../../Redux/Category/categoryAction";
+import {fetchCategoriesApi} from "../../../Redux/Categories/categoriesAction";
 
 const Menu = () => {
     const data = useSelector(element => element.category.data);
@@ -32,7 +32,7 @@ const Menu = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchApi());
+        dispatch(fetchCategoriesApi());
     } , [])
 
     return (

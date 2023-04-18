@@ -1,0 +1,22 @@
+.box{
+    width: 1600px;
+    margin: auto;
+}
+.box a{
+    text-decoration: none;
+}
+
+.subject{
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    font-size: 13px;
+    overflow: hidden;
+}
+@media screen and (max-width: 1600px) {
+    .box{
+        width: 100%;
+    }
+}
+

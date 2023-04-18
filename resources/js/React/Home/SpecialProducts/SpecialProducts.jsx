@@ -5,14 +5,19 @@ import Text from '../../../../../public/images/amazing-typo.svg'
 import {Link} from "react-router-dom";
 import Item from "./Item/Item";
 import {useSelector , useDispatch} from "react-redux";
-import {fetchHomeApi} from "../Redux/Home/HomeAction";
-
+import {fetchVarietiesApi} from "../../Redux/Varieties/VarietiesAction";
+// import {fetchHomeViewApi} from "../../Redux/HomeView/HmeViewAction";
 
 const SpecialProducts = () => {
 
-    const product = useSelector(item => item.home.data);
+    const homeView = useSelector(item => item.homeView.data);
+    const varieties = useSelector(item => item.varieties.data);
+    const category = useSelector(item => item.category.data);
     const dispatch = useDispatch();
-    // console.log(product)
+
+    const filterVarieties = varieties.filter((item) => item.special === 1);
+
+    const specialVarieties = filterVarieties.sort(() => Math.random() - 0.5);
 
     const dragBox = useRef();
     const Right = useRef();
@@ -46,7 +51,7 @@ const SpecialProducts = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchHomeApi());
+        dispatch(fetchVarietiesApi());
         dragBox.current.onscroll = () => {
             let mainWidth = dragBox.current.scrollLeft;
             let scrollWidth = dragBox.current.clientWidth - dragBox.current.scrollWidth
@@ -70,18 +75,16 @@ const SpecialProducts = () => {
                         <div className={`${styles.logo} d-flex align-items-center justify-content-center flex-column p-1`}>
                             <img src={Text}/>
                             <img src={Logo}/>
-                            <Link to={1} className={'link-light d-flex  align-items-center justify-content-center py-2'}>
-                                <div>مشاهده همه</div>
-                                <i className={'bi-chevron-left mt-1 ms-1'} />
+                            <Link to={1} className={'link-light'}>
+                                <p>مشاهده همه</p>
                             </Link>
                         </div>
                         <div className={`position-relative ${styles.productBox}`}>
-                            {product.length ?
-                                product[1].map((item , index) =>
-                                    <Item key={item.id} item={item} index={index}/>
+                            {specialVarieties.length ?
+                                specialVarieties.map((item , index) => index < 20 ?
+                                    <Item key={item.id} item={item} index={index}/> : null
                                 )
-                                :
-                                null
+                                :null
                             }
                         </div>
                     </div>

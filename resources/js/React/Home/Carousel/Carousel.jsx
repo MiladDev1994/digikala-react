@@ -4,12 +4,12 @@ import Carousel from 'react-bootstrap/Carousel';
 import {Link} from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import {useSelector , useDispatch} from "react-redux";
-import {fetchHomeApi} from "../Redux/Home/HomeAction";
+import {fetchCarouselApi} from "../../Redux/Carousel/CarouselAction";
 
 
 const CarouselB = () => {
 
-    const carousel = useSelector(item => item.home.data);
+    const carousel = useSelector(item => item.carouselData.data);
     const dispatch = useDispatch();
 
     const [index, setIndex] = useState(0);
@@ -19,14 +19,14 @@ const CarouselB = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchHomeApi());
+        dispatch(fetchCarouselApi());
     } , [])
 
     return (
-        <div className={`${styles.carouselBox} m-auto`}>
+        <div className={`${styles.carouselBox} m-auto`} dir={'rtl'}>
             <Carousel activeIndex={index} onSelect={handleSelect} variant="dark">
                 {carousel.length ?
-                    carousel[0].map(item =>
+                    carousel.map(item =>
                         <Carousel.Item key={item.id} className={`position-relative`} >
                             <Link to={`/${item.id}`}>
                                 <div

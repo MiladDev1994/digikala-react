@@ -10,7 +10,6 @@ class categoryController extends Controller
 {
     public function index(){
         $categories = Category::query()->with('Child')->get();
-
         return response()->json($categories);
     }
 }

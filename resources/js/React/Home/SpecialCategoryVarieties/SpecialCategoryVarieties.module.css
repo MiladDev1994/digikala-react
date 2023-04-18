@@ -1,0 +1,47 @@
+.box{
+    width: 1600px;
+    transition: 0.3s;
+}
+
+.firstChild{
+    height: 90px;
+    width: 40%;
+}
+.lastChild{
+    height: 90px;
+    width: 60%;
+}
+.btn{
+    width: 120px;
+    height: 100%;
+}
+.btn a{
+    font-size: 13px;
+    text-decoration: none;
+}
+.varieties{
+    width: calc(100% - 120px);
+    height: 100%;
+}
+.feeOff{
+    right: 0;
+    bottom: -5px;
+    font-size: 14px;
+}
+@media screen and (max-width: 1600px) {
+    .box{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main{
+        flex-direction: column;
+    }
+    .firstChild{
+        width: 100%;
+    }
+    .lastChild{
+        width: 100%;
+    }
+}

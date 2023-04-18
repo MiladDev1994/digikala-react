@@ -1,0 +1,22 @@
+.item{
+    width: 100%;
+    height: 100px;
+}
+
+.item h4{
+    width: 50px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.item div{
+    width: calc(100% - 135px);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    overflow: hidden;
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

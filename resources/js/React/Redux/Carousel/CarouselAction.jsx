@@ -1,35 +1,35 @@
 import axios from "axios";
 
-const fetchHomeRequest = () => {
+const fetchCarouselRequest = () => {
     return {
-        type: "REQUEST",
+        type: "REQUEST_CAROUSEL",
     }
 }
-const fetchHomeSuccess = (data) => {
+const fetchCarouselSuccess = (data) => {
     return {
-        type: "SUCCESS",
+        type: "SUCCESS_CAROUSEL",
         payload: data
     }
 }
-const fetchHomeError = (error) => {
+const fetchCarouselError = (error) => {
     return {
-        type: "ERROR",
+        type: "ERROR_CAROUSEL",
         payload: error
     }
 }
 
 
-export const fetchHomeApi = () => {
+export const fetchCarouselApi = () => {
     return (dispatch) => {
-        dispatch(fetchHomeRequest());
+        dispatch(fetchCarouselRequest());
         axios.get('http://127.0.0.1:8000/api/carousel')
             .then(response => {
                 const data = response.data;
-                dispatch(fetchHomeSuccess(data));
+                dispatch(fetchCarouselSuccess(data));
             })
             .catch(error => {
                 const message = error.message;
-                dispatch(fetchHomeError(message));
+                dispatch(fetchCarouselError(message));
             })
     }
 }

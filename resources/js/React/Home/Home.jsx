@@ -3,21 +3,36 @@ import styles from './Home.module.css';
 import CarouselB from "./Carousel/Carousel";
 import Servises from "./Servises/Servises";
 import SpecialProducts from "./SpecialProducts/SpecialProducts";
-import store from "./Redux/store";
-import {Provider} from 'react-redux';
+import SpecialCategoryVarieties from "./SpecialCategoryVarieties/SpecialCategoryVarieties";
+import BannerFour from "./BannerFour/BannerFour";
+import Categories from "./Categories/Categories";
+import BannerTow from "./BannerTwo/BannerTow";
+import SpecialCategories from "./SpecialCategories/SpecialCategories";
+import SpecialBrands from "./SpecialBrands/SpecialBrands";
+import BannerBrand from "./BannerBrand/BannerBrand";
+import MoreSells from "./MoreSells/MoreSells";
+import Articles from "./Articles/Articles";
+
 
 
 const Home = () => {
 
     return (
-        <Provider store={store}>
-            <div style={{height:"2000px"}}>
-                <div className={styles.headerFake}>1</div>
+            <div className={'pb-5'}>
+                <div className={styles.headerFake} />
                 <CarouselB />
                 <Servises />
                 <SpecialProducts />
+                <SpecialCategoryVarieties />
+                <BannerFour />
+                <Categories />
+                <BannerTow />
+                <SpecialCategories />
+                <SpecialBrands />
+                <BannerBrand />
+                <MoreSells />
+                <Articles />
             </div>
-        </Provider>
 
     );
 };

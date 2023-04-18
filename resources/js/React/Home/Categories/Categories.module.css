@@ -1,0 +1,29 @@
+.box{
+    width: 1300px;
+    margin: auto;
+    transition: 0.3s;
+}
+.box a{
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 13px;
+}
+.name{
+    white-space: nowrap;
+}
+@media screen and (max-width: 1600px) {
+    .box{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .box{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 750px) {
+    .box{
+        width: 100%;
+    }
+}
+

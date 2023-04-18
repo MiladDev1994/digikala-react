@@ -3,23 +3,24 @@ const initialState = {
     error: '',
 }
 
-const HomeReducer = (state = initialState , action) => {
+const categoriesReducer = (state = initialState , action) => {
     switch (action.type){
-        case "REQUEST" :
+        case "REQUEST_CATEGORY" :
             return state;
-        case "SUCCESS" :
+        case "SUCCESS_CATEGORY" :
             return {
                 data: action.payload,
-                error: ''
+                error: '',
             }
-        case "ERROR" :
+        case "ERROR_CATEGORY" :
             return {
                 data: [],
-                error: action.payload,
+                error: action.payload
             }
         default :
             return state;
     }
 }
 
-export default HomeReducer;
+
+export default categoriesReducer;
