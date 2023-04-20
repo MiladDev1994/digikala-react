@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ArticleController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\categoryController;
 use App\Http\Controllers\Api\HomeViewController;
@@ -31,3 +32,5 @@ Route::apiResource('carousel' , SliderController::class);
 Route::apiResource('varieties' , VarietyController::class);
 Route::apiResource('brands' , BrandController::class);
 Route::apiResource('articles' , ArticleController::class);
+
+Route::get('loginedIn' , [AuthController::class , 'loginedIn']);

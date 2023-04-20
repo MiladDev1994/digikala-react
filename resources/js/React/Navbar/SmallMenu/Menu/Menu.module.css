@@ -29,9 +29,6 @@
     transition: 0.3s;
 }
 
-/*i{*/
-/*    transition: 0.3s;*/
-/*}*/
 
 .arrowBox{
     width: 30px;
@@ -66,4 +63,25 @@
 }
 .menuLink:hover{
     color: #ff5e5e;
+}
+
+.closeBtn{
+    width: 30px;
+    height: 30px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    left: 15px;
+    top: 10px;
+    background-color: #2f2f2f;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+.closeBtn:hover{
+    background-color: #4a4a4a;
+}
+@media (max-width: 700px) {
+    .closeBtn{
+        display: flex!important;
+    }
 }

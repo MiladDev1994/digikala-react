@@ -5,6 +5,7 @@ import SmallMenu from "./SmallMenu/SmallMenu";
 import Search from './Search/Search';
 import BigMenu from "./BigMenu/BigMenu";
 import axios from "axios";
+import PhoneFooter from "./PhoneFooter/PhoneFooter";
 import MenuContextProvider from "./Context/MenuContextProvider";
 
 
@@ -29,6 +30,7 @@ const Navbar = () => {
 
                     <BigMenu category={category}/>
                 </div>
+                    <PhoneFooter />
             </MenuContextProvider>
 
 

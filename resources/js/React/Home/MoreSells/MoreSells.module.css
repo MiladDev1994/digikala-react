@@ -14,13 +14,18 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+.btn:hover{
+    opacity: 1;
 }
 .right{
-    right: 0;
+    right: 5px;
     display: none;
 }
 .left{
-    left: 0;
+    left: 5px;
     display: flex;
 }
 @media (max-width: 1600px) {

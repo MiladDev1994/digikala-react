@@ -1,16 +1,30 @@
 .box{
     width: 1600px;
-    height: 120px;
+    min-height: 120px;
 }
-
+.text{
+    font-size: 13px;
+}
+.phone{
+    font-size: 13px;
+    opacity: 0.7;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.Btn{
+    white-space: nowrap;
+}
+.under{
+    display: none;
+}
 @media (max-width: 1600px) {
     .box{
         width: 100%;
-        height: 120px;
+        min-height: 120px;
     }
 }
 @media (max-width: 600px) {
-    .box{
-        display: none;
+    .under{
+        display: block;
     }
 }

@@ -85,40 +85,40 @@ const Search = () => {
                 <div ref={basketWidth} className={`align-items-center justify-content-around px-2 ${styles.basketBox}`}>
 
                 {/*LogOut*/}
-                    {/*<div className={`${styles.login} h-100 rounded-3 px-2 d-flex align-items-center justify-content-between`} >*/}
-                    {/*    <i className={'bi-box-arrow-left h4 mt-1'} />*/}
-                    {/*    <Link to={'#'} className={styles.loginText}>ورود</Link>*/}
-                    {/*    <div className={styles.line} />*/}
-                    {/*    <Link to={'#'} className={' '}>ثبت&zwnj; نام</Link>*/}
-                    {/*</div>*/}
+                    <div className={`${styles.login} h-100 rounded-3 px-2 d-flex align-items-center justify-content-between`} >
+                        <i className={'bi-box-arrow-left h4 mt-1'} />
+                        <Link to={'/login'} className={styles.loginText}>ورود</Link>
+                        <div className={styles.line} />
+                        <Link to={'/register'}>ثبت&zwnj; نام</Link>
+                    </div>
 
 
                 {/*LogIn*/}
-                    <Dropdown>
-                        <Dropdown.Toggle className={`${styles.dropdown} border-0`} variant="dark" id="dropdown-basic">
-                            <i className={'bi-person h2 mt-1'} />
-                        </Dropdown.Toggle>
+                {/*    <Dropdown>*/}
+                {/*        <Dropdown.Toggle className={`${styles.dropdown} border-0`} variant="dark" id="dropdown-basic">*/}
+                {/*            <i className={'bi-person h2 mt-1'} />*/}
+                {/*        </Dropdown.Toggle>*/}
 
-                        <Dropdown.Menu className={`${styles.dropdownMenu} bg-dark text-light shadow p-0`}>
-                            <Link to={'#'} className={'d-flex align-items-center justify-content-between px-3 py-2'}>
-                                <img src={personLogo}/>
-                                <h5>میلاد</h5>
-                                <i className={'bi-chevron-left'} />
-                            </Link>
-                            <Link to={'#'} className={'d-flex align-items-center justify-content-start px-4'}>
-                                <i className={'bi-bag h5 me-2'} />
-                                <p className={'mt-1'}>سفارشات</p>
-                            </Link>
-                            <Link to={'#'} className={'d-flex align-items-center justify-content-start px-4'}>
-                                <i className={'bi-heart  h5 me-2'} />
-                                <p className={'mt-1'}>علاقه&zwnj;مندی</p>
-                            </Link>
-                            <Link to={'#'} className={'d-flex align-items-center justify-content-start px-4'} style={{border:0}}>
-                                <i className={'bi-box-arrow-right h5 me-2'} />
-                                <p className={'mt-1'}>خروج از حساب کاربری</p>
-                            </Link>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                {/*        <Dropdown.Menu className={`${styles.dropdownMenu} bg-dark text-light shadow p-0`}>*/}
+                {/*            <Link to={'#'} className={'d-flex align-items-center justify-content-between px-3 py-2'}>*/}
+                {/*                <img src={personLogo}/>*/}
+                {/*                <h5>میلاد</h5>*/}
+                {/*                <i className={'bi-chevron-left'} />*/}
+                {/*            </Link>*/}
+                {/*            <Link to={'#'} className={'d-flex align-items-center justify-content-start px-4'}>*/}
+                {/*                <i className={'bi-bag h5 me-2'} />*/}
+                {/*                <p className={'mt-1'}>سفارشات</p>*/}
+                {/*            </Link>*/}
+                {/*            <Link to={'#'} className={'d-flex align-items-center justify-content-start px-4'}>*/}
+                {/*                <i className={'bi-heart  h5 me-2'} />*/}
+                {/*                <p className={'mt-1'}>علاقه&zwnj;مندی</p>*/}
+                {/*            </Link>*/}
+                {/*            <Link to={'#'} className={'d-flex align-items-center justify-content-start px-4'} style={{border:0}}>*/}
+                {/*                <i className={'bi-box-arrow-right h5 me-2'} />*/}
+                {/*                <p className={'mt-1'}>خروج از حساب کاربری</p>*/}
+                {/*            </Link>*/}
+                {/*        </Dropdown.Menu>*/}
+                {/*    </Dropdown>*/}
 
 
 

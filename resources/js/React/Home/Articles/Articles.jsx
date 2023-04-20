@@ -7,7 +7,6 @@ import {fetchArticleApi} from "../../Redux/Articles/ArticlesAction";
 const Articles = () => {
     const data = useSelector(element => element.articles.data);
     const dispatch = useDispatch();
-    console.log(data)
 
     useEffect(() => {
         dispatch(fetchArticleApi());

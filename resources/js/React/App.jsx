@@ -1,28 +1,20 @@
 import React from 'react';
-import { Route , Routes } from "react-router-dom";
-import Navbar from "./Navbar/Navbar";
-import Home from "./Home/Home";
-import Footer from "./Footer/Footer";
-import store from "./Redux/store";
-import {Provider} from "react-redux";
+import Last from "./Last";
+import {Route , Routes} from "react-router-dom";
+import Login from "./Auth/Login"
+import Register from "./Auth/Register";
 
 
 const App = () => {
 
 
     return (
-        <Provider store={store}>
-            <div>
-                < Navbar />
-                <div style={{minHeight: 'calc(100vh - 120px)'}}>
-                    <Routes>
-                        <Route path={'/'} element={<Home />} />
-                    </Routes>
-                </div>
+        <Routes>
+            <Route path={'/*'} element={< Last />} />
+            <Route path={'/login'} element={< Login />} />
+            <Route path={'/register'} element={<Register />} />
+        </Routes>
 
-                < Footer />
-            </div>
-        </Provider>
 
     );
 };

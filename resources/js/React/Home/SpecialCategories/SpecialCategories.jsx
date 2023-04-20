@@ -7,6 +7,8 @@ import Item from "./Item/Item";
 const SpecialCategories = () => {
     const categories = useSelector(item => item.category.data);
     const data = categories.filter(item => item.special === 1);
+    const dataLength = data.length * 200;
+
     const Box = useRef();
     const right = useRef();
     const left = useRef();
@@ -38,9 +40,9 @@ const SpecialCategories = () => {
     useEffect(() => {
         Box.current.onscroll =() => {
             Box.current.scrollLeft === 0 ? right.current.style.display = 'none' : right.current.style.display = 'flex';
-            Box.current.scrollLeft + (data.length*200) - Box.current.clientWidth === 0 ? left.current.style.display = 'none' : left.current.style.display = 'flex';
+            Box.current.scrollLeft + (dataLength) - Box.current.clientWidth === 0 ? left.current.style.display = 'none' : left.current.style.display = 'flex';
         }
-    })
+    } , [dataLength])
     return (
         <div className={'w-100 py-3 position-relative'} dir={'rtl'}>
             <h4 className={'text-center py-4 text-light'}>پیشنهاد دیجی کالا</h4>

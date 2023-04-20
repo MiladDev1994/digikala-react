@@ -1,0 +1,32 @@
+.box{
+    display: flex;
+    padding: 30px 0;
+    align-items: start;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+.form{
+    width: 500px;
+}
+
+.inputBox{
+    height: 90px;
+}
+input{
+    outline: none;
+    font-size: 18px;
+}
+.onFocus{
+    bottom: 12px;
+    right: 10px;
+    transition: 0.3s;
+    color: #747474;
+}
+
+.outFocus{
+    bottom: 50px;
+    right: 10px;
+    transition: 0.3s;
+    color: #d8d8d8;
+}

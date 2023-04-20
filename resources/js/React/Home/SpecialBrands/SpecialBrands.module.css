@@ -20,6 +20,11 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: 0.3s;
+    opacity: 0.6;
+}
+.btn:hover{
+    opacity: 1;
 }
 .right{
     right: -10px;

@@ -19,7 +19,7 @@ const Home = () => {
 
     return (
             <div className={'pb-5'}>
-                <div className={styles.headerFake} />
+                {/*<div className={styles.headerFake} />*/}
                 <CarouselB />
                 <Servises />
                 <SpecialProducts />
