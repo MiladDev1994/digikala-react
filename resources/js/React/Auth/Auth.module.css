@@ -13,9 +13,10 @@
 .inputBox{
     height: 90px;
 }
-input{
+.name{
     outline: none;
     font-size: 18px;
+    transition: 0.3s;
 }
 .onFocus{
     bottom: 12px;
@@ -29,4 +30,33 @@ input{
     right: 10px;
     transition: 0.3s;
     color: #d8d8d8;
+}
+.message{
+    position: absolute;
+    font-size: 11px;
+    left: 10px;
+    bottom: -11px;
+    color: #ff5656;
+}
+.back{
+    cursor: pointer;
+    background-color: #2d2d2d;
+    padding: 0 10px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.back:hover{
+    background-color: #484848;
+}
+.enter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #2d2d2d;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.enter:hover{
+    background-color: #484848;
 }

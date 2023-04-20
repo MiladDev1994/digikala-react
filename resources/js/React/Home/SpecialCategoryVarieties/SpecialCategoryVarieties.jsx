@@ -12,7 +12,7 @@ const SpecialCategoryVarieties = () => {
     const categories = useSelector(item => item.category.data);
 
     const newVarieties = varieties.filter(item =>
-        item.special === 1 &&
+        homeView.length && item.special === 1 &&
         (item.categories.filter(element => (element.id === homeView[0].category_id)).length > 0  ?
             (item.categories.filter(element => element.id === homeView[0].category_id))[0].id :
             0) === homeView[0].category_id
@@ -36,7 +36,7 @@ const SpecialCategoryVarieties = () => {
                         <div className={'w-50'}>
                             <h5 className={'text-center mt-1'} >شگفت انگیز</h5>
                             <h5 className={'text-center px-2'}>
-                                {categories.length ? categories.filter(item => item.id === homeView[0].category_id)[0].name : ''}
+                                {homeView.length && categories.length ? categories.filter(item => item.id === homeView[0].category_id)[0].name : ''}
                             </h5>
                         </div>
                     </div>

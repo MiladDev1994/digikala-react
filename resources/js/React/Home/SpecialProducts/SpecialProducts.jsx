@@ -13,7 +13,7 @@ const SpecialProducts = () => {
     const homeView = useSelector(item => item.homeView.data);
     const varieties = useSelector(item => item.varieties.data);
     const category = useSelector(item => item.category.data);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const filterVarieties = varieties.filter((item) => item.special === 1);
 
@@ -51,7 +51,7 @@ const SpecialProducts = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchVarietiesApi());
+        // dispatch(fetchVarietiesApi());
         dragBox.current.onscroll = () => {
             let mainWidth = dragBox.current.scrollLeft;
             let scrollWidth = dragBox.current.clientWidth - dragBox.current.scrollWidth

@@ -1,20 +1,24 @@
-import React from 'react';
-import Last from "./Last";
-import {Route , Routes} from "react-router-dom";
-import Login from "./Auth/Login"
-import Register from "./Auth/Register";
+import React, {useEffect} from 'react';
+import RootControll from "./RootControll";
+import UseContextProvider from "./Context/UseContextProvider";
+import store from "./Redux/store";
+import {Provider} from "react-redux";
 
 
 const App = () => {
 
+    useEffect(() => {
 
+        if (!sessionStorage.getItem('user_id')){
+            sessionStorage.setItem('user_id' , false)
+        }
+    })
     return (
-        <Routes>
-            <Route path={'/*'} element={< Last />} />
-            <Route path={'/login'} element={< Login />} />
-            <Route path={'/register'} element={<Register />} />
-        </Routes>
-
+        <Provider store={store}>
+            <UseContextProvider>
+                <RootControll />
+            </UseContextProvider>
+        </Provider>
 
     );
 };
