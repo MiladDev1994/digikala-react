@@ -75,7 +75,7 @@ const BigMenu = () => {
                             onMouseOver={() => setSnake({location: "237px" , width: "87px"})}
                             onMouseLeave={() => setSnake({location: "237px" , width: "0px"})}
                         >
-                            <Link className={'d-flex align-items-center justify-content-center'} to={'/#'}>
+                            <Link className={'d-flex align-items-center justify-content-center'} to={'shop/moreSell'}>
                                 <i className={'bi-list h5 mt-2'} />
                                 <div>پرفروش&zwnj;ترین&zwnj;ها</div>
                             </Link>
@@ -94,9 +94,8 @@ const BigMenu = () => {
                         <li
                             onMouseOver={() => setSnake({location: "508px" , width: "85px"})}
                             onMouseLeave={() => setSnake({location: "508px" , width: "0px"})}
-                            // className={'border-start'}
                         >
-                            <Link className={'d-flex align-items-center justify-content-center'} to={'/#'}>
+                            <Link className={'d-flex align-items-center justify-content-center'} to={'shop/special'}>
                                 <i className={'bi-list h5 mt-2'} />
                                 <div>شگفت&zwnj;انگیز&zwnj;ها</div>
                             </Link>

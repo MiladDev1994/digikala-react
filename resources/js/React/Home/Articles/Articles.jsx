@@ -17,7 +17,7 @@ const Articles = () => {
                 <div className={'row w-100 px-3 m-auto'}>
                     {data.length ?
                         data.map((item , index) => item.special === 1 ?
-                            <Link key={item.id} className={'col-12 col-md-6 col-lg-3 mt-4'}>
+                            <Link to={`/article/${item.id}`} key={item.id} className={'col-12 col-md-6 col-lg-3 mt-4'}>
                                 <div className={'border shadow rounded-3 border-secondary border-opacity-50 overflow-hidden'}>
                                     <img width={'100%'} src={`http://127.0.0.1:8000/images/${item.logo}`} className={'rounded-top'}/>
                                     <div className={`${styles.subject} text-start text-light opacity-50 px-2`}>{item.subject}</div>

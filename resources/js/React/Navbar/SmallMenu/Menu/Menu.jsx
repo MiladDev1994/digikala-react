@@ -48,7 +48,7 @@ const Menu = () => {
             <div className={'text-light py-2 border-bottom border-secondary border-opacity-10'}  onClick={() => setMenu(false)}>
                 {
                     menuItems.map(item =>
-                        <Link key={item.title} to={item.link} className={`d-flex align-items-sm-center justify-content-end px-3 ${styles.menuItem}`}>
+                        <Link key={item.title} to={`shop/category-${item.id}`} className={`d-flex align-items-sm-center justify-content-end px-3 ${styles.menuItem}`}>
                             <div className={'opacity-75'}>{item.title}</div>
                             <i className={`${item.icon} h5 mt-2 me-1`}/>
                         </Link>
@@ -62,7 +62,7 @@ const Menu = () => {
                         data.map(item => item.level === 1 ?
                             <div key={item.id} className={`py-2 px-3 opacity-75 border-bottom border-secondary border-opacity-10`} style={{fontSize:'14px'}}>
                                 <div className={`d-flex justify-content-between ${styles.menuMain}`}>
-                                    <Link to={`/${item.id}`} className={styles.menuLink}  onClick={() => setMenu(false)}>{item.name}</Link>
+                                    <Link to={`shop/category-${item.id}`} className={styles.menuLink}  onClick={() => setMenu(false)}>{item.name}</Link>
                                     {
                                         item.child.length ?
                                             <div className={`${styles.arrowBox} rounded-pill position-relative`}>
@@ -84,7 +84,7 @@ const Menu = () => {
                                         data.map(itemB => item.id === itemB.parent_id ?
                                             <div key={itemB.id} className={'py-2 px-3 mt-1'}>
                                                 <div className={'d-flex justify-content-between'}>
-                                                    <Link to={`/${itemB.id}`} className={styles.menuLink} onClick={() => setMenu(false)}>{itemB.name}</Link>
+                                                    <Link to={`shop/category-${itemB.id}`} className={styles.menuLink} onClick={() => setMenu(false)}>{itemB.name}</Link>
                                                     {
                                                         itemB.child.length ?
                                                             <div className={`${styles.arrowBox} rounded-pill position-relative`}>
@@ -106,7 +106,7 @@ const Menu = () => {
                                                         data.map(itemC => itemB.id === itemC.parent_id ?
                                                             <div key={itemC.id} className={'p-2 mt-1'}>
                                                                 <div className={'d-flex justify-content-between'}>
-                                                                    <Link to={`/${itemC.id}`} className={styles.menuLink} onClick={() => setMenu(false)}>{itemC.name}</Link>
+                                                                    <Link to={`shop/category-${itemC.id}`} className={styles.menuLink} onClick={() => setMenu(false)}>{itemC.name}</Link>
                                                                     {
                                                                         itemC.child.length ?
                                                                             <div className={`${styles.arrowBox} rounded-pill position-relative`}>
@@ -129,7 +129,7 @@ const Menu = () => {
                                                                         data.map(itemD => itemC.id === itemD.parent_id ?
                                                                             <div key={itemD.id} className={'p-2 mt-1'}>
                                                                                 <div className={'d-flex justify-content-between'}>
-                                                                                    <Link to={`/${itemD.id}`} className={styles.menuLink} onClick={() => setMenu(false)}>{itemD.name}</Link>
+                                                                                    <Link to={`shop/category-${itemD.id}`} className={styles.menuLink} onClick={() => setMenu(false)}>{itemD.name}</Link>
                                                                                     {
                                                                                         itemD.child.length ?
                                                                                             <div className={`${styles.arrowBox} rounded-pill position-relative`}>
@@ -152,7 +152,7 @@ const Menu = () => {
                                                                                         data.map(itemE => itemD.id === itemE.parent_id ?
                                                                                             <div key={itemD.id} className={'p-2 mt-1'}>
                                                                                                 <div className={'d-flex justify-content-between'}>
-                                                                                                    <Link to={`/${itemE.id}`} className={styles.menuLink} onClick={() => setMenu(false)}>{itemE.name}</Link>
+                                                                                                    <Link to={`shop/category-${itemE.id}`} className={styles.menuLink} onClick={() => setMenu(false)}>{itemE.name}</Link>
                                                                                                     {
                                                                                                         itemE.child.length ?
                                                                                                             <div className={`${styles.arrowBox} rounded-pill position-relative`}>
@@ -175,7 +175,7 @@ const Menu = () => {
                                                                                                         data.map(itemF => itemE.id === itemF.parent_id ?
                                                                                                             <div key={itemD.id} className={'p-2 mt-1'}>
                                                                                                                 <div className={'d-flex justify-content-between'}>
-                                                                                                                    <Link to={`/${itemF.id}`} className={styles.menuLink} onClick={() => setMenu(false)}>{itemF.name}</Link>
+                                                                                                                    <Link to={`shop/category-${itemF.id}`} className={styles.menuLink} onClick={() => setMenu(false)}>{itemF.name}</Link>
                                                                                                                     {
                                                                                                                         itemF.child.length ?
                                                                                                                             <div className={`${styles.arrowBox} rounded-pill position-relative`}>

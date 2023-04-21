@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     use HasFactory;
+
+    public function product(){
+        return $this->hasOne(Product::class , 'id' ,'product_id');
+    }
+    public function variety(){
+        return $this->hasMany(Variety::class , 'dkp' ,'product_id');
+    }
 }

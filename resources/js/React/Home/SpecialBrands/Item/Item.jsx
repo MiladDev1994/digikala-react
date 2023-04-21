@@ -5,7 +5,7 @@ const Item = ({data , index}) => {
     const [link , setLink] = useState(true);
     return (
         <Link
-            to={link ? `/${data.id}` : '/'}
+            to={link ? `shop/brand-${data.id}` : '/'}
             className={'position-absolute border-end border-opacity-25 border-secondary h-100 d-flex align-items-center justify-content-center flex-column'}
             style={{width:'200px', right: `${index*200}px`}}
             onMouseDown={() => setLink(true)}

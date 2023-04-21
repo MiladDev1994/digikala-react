@@ -7,7 +7,8 @@ import Footer from "./Footer/Footer";
 import {useSelector , useDispatch} from "react-redux";
 import {fetchVarietiesApi} from "./Redux/Varieties/VarietiesAction";
 import {BeatLoader} from "react-spinners";
-
+import Article from "./Article/Article";
+import Shop from "./Shop/Shop";
 
 const Last = () => {
 
@@ -27,6 +28,9 @@ const Last = () => {
                         <div className={styles.headerFake} />
                         <Routes>
                             <Route path={'/'} element={<Home />} />
+                            <Route path={'/article/:id'} element={ <Article /> } />
+                            <Route path={'/shop/:id'} element={ <Shop /> } />
+                            <Route path={'/shop/moreSell'} element={ <Shop /> } />
                         </Routes>
                     </div>
                     < Footer />

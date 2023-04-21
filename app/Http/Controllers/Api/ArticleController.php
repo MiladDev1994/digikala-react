@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ArticleController extends Controller
 {
     public function index(){
-        $Articles = Article::all();
+        $Articles = Article::query()->with('product')->with('variety')->get();
         return response()->json($Articles);
     }
 }

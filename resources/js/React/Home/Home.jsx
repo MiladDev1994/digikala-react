@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './Home.module.css';
 import CarouselB from "./Carousel/Carousel";
 import Servises from "./Servises/Servises";
 import SpecialProducts from "./SpecialProducts/SpecialProducts";
@@ -15,11 +14,11 @@ import Articles from "./Articles/Articles";
 
 
 
+
 const Home = () => {
 
     return (
             <div className={'pb-5'}>
-                {/*<div className={styles.headerFake} />*/}
                 <CarouselB />
                 <Servises />
                 <SpecialProducts />

@@ -14,7 +14,7 @@ class Variety extends Model
     }
 
     public function product(){
-        return $this->hasMany(Product::class , 'dkp' , 'dkp');
+        return $this->hasMany(Product::class , 'id' , 'dkp');
     }
 
     public function categories(){
