@@ -18,7 +18,7 @@ const Item = ({item , index}) => {
             onMouseMove={() => setHref(false)}
         >
             <div style={{width: '100%', height: '164px'}}>
-                <img width={'100%'} className={''} src={`http://127.0.0.1:8000/images/${item.product[0].image.split(',')[0]}`} />
+                <img width={'100%'} src={`http://127.0.0.1:8000/images/${item.product[0].image.split(',')[0]}`} />
             </div>
 
             <div className={`${styles.detail} mt-4`}>

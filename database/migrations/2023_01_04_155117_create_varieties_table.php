@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('dkpc');
             $table->unsignedBigInteger('dkp');
-            $table->unsignedBigInteger('variety');
+            $table->string('variety');
             $table->integer('price');
             $table->integer('price_off');
             $table->integer('number');

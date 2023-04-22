@@ -84,6 +84,16 @@
     left: 10px;
     cursor: pointer;
 }
+.searchDinamic{
+    width: calc(100% - 160px);
+}
+.logoBox{
+    width: 160px;
+}
+.searchResponsive{
+    width: calc(100% - 300px);
+}
+
 @media screen and (max-width: 1600px) {
     .selection{
         width: 100%;
@@ -95,6 +105,9 @@
     }
     .searchFake{
         top: 35px;
+    }
+    .searchDinamic{
+        width: 100%;
     }
 }
 
@@ -124,4 +137,8 @@
     .searchFake{
         top: 0;
     }
+    .searchResponsive{
+        width: 100%;
+    }
+
 }

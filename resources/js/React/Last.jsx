@@ -5,19 +5,18 @@ import Navbar from "./Navbar/Navbar";
 import Home from "./Home/Home";
 import Footer from "./Footer/Footer";
 import {useSelector , useDispatch} from "react-redux";
-import {fetchVarietiesApi} from "./Redux/Varieties/VarietiesAction";
+import {fetchHomeViewApi} from "./Redux/HomeView/HmeViewAction";
 import {BeatLoader} from "react-spinners";
 import Article from "./Article/Article";
 import Shop from "./Shop/Shop";
 
 const Last = () => {
 
-    const loading = useSelector(item => item.varieties.data);
+    const loading = useSelector(item => item.homeView.data);
     const dispatch = useDispatch();
-    // console.log(loading)
 
     useEffect(() => {
-        dispatch(fetchVarietiesApi());
+        dispatch(fetchHomeViewApi());
     } , [])
     return (
         <>

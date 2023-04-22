@@ -26,10 +26,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::apiResource('homeView' , HomeViewController::class);
+Route::get('homeView' , [HomeViewController::class , 'homeView']);
+Route::get('specialVariety' , [HomeViewController::class , 'specialVariety']);
+Route::get('SpecialCategoryVarieties' , [HomeViewController::class , 'SpecialCategoryVarieties']);
+Route::get('moreSell' , [HomeViewController::class , 'moreSells']);
+
 Route::apiResource('category' , categoryController::class);
 Route::apiResource('carousel' , SliderController::class);
-Route::apiResource('varieties' , VarietyController::class);
 Route::apiResource('brands' , BrandController::class);
 Route::apiResource('articles' , ArticleController::class);
 
@@ -37,3 +40,5 @@ Route::get('loginedIn' , [AuthController::class , 'loginedIn']);
 Route::post('register' , [AuthController::class , 'register']);
 Route::post('login' , [AuthController::class , 'login']);
 Route::post('logOut' , [AuthController::class , 'logOut']);
+Route::get('getApi' , [HomeViewController::class , 'getApi']);
+Route::post('varieties' , [VarietyController::class , 'varieties']);

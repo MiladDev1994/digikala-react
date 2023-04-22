@@ -4,9 +4,9 @@ import styles from './MoreSells.module.css';
 import Item from "./Item/Item";
 
 const MoreSells = () => {
-    const varieties = useSelector(item => item.varieties.data);
-    const data = varieties.filter(item => item.moreSell === 1).sort(() => Math.random() - 0.5);
-    const BoxLength = Math.ceil(data.length/3) > 8 ? 8 :  Math.ceil(data.length/3)
+    const varieties = useSelector(item => item.homeView.data);
+    const BoxLength = varieties.length && (Math.ceil(varieties[3].length/3) > 8 ? 8 :  Math.ceil(varieties[3].length/3))
+
 
     const Box = useRef();
     const right = useRef();
@@ -59,11 +59,11 @@ const MoreSells = () => {
                     onMouseUp={upHandler}
                     onMouseLeave={upHandler}
                 >
-                    {data.length ?
-                        data.map((item , index) => index < 24 && index % 3 === 0 ?
+                    {varieties.length ?
+                        varieties[3].map((item , index) => index < 24 && index % 3 === 0 ?
                             <div key={item.id} className={'position-absolute h-100 border-left'} style={{width: '300px', right: `${(index/3*300)}px`}}>
                                 {
-                                    data.map((element , num) => (num === index) || (num === (index + 1)) || (num === (index + 2)) ?
+                                    varieties[3].map((element , num) => (num === index) || (num === (index + 1)) || (num === (index + 2)) ?
                                         <Item key={element.id} data={element} index={num} >{num}</Item>
                                     : null
                                     )

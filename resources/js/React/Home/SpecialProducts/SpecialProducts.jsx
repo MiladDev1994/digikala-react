@@ -1,23 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 import styles from './SpecialProducts.module.css';
 import Logo from '../../../../../public/images/box.png';
 import Text from '../../../../../public/images/amazing-typo.svg'
 import {Link} from "react-router-dom";
 import Item from "./Item/Item";
-import {useSelector , useDispatch} from "react-redux";
-import {fetchVarietiesApi} from "../../Redux/Varieties/VarietiesAction";
-// import {fetchHomeViewApi} from "../../Redux/HomeView/HmeViewAction";
+import {useSelector} from "react-redux";
+
 
 const SpecialProducts = () => {
 
-    const homeView = useSelector(item => item.homeView.data);
-    const varieties = useSelector(item => item.varieties.data);
-    const category = useSelector(item => item.category.data);
-    // const dispatch = useDispatch();
-
-    const filterVarieties = varieties.filter((item) => item.special === 1);
-
-    const specialVarieties = filterVarieties.sort(() => Math.random() - 0.5);
+    const specialVarieties = useSelector(item =>item.homeView.data);
 
     const dragBox = useRef();
     const Right = useRef();
@@ -51,7 +43,6 @@ const SpecialProducts = () => {
     }
 
     useEffect(() => {
-        // dispatch(fetchVarietiesApi());
         dragBox.current.onscroll = () => {
             let mainWidth = dragBox.current.scrollLeft;
             let scrollWidth = dragBox.current.clientWidth - dragBox.current.scrollWidth
@@ -81,7 +72,7 @@ const SpecialProducts = () => {
                         </div>
                         <div className={`position-relative ${styles.productBox}`}>
                             {specialVarieties.length ?
-                                specialVarieties.map((item , index) => index < 20 ?
+                                specialVarieties[1].map((item , index) => index < 20 ?
                                     <Item key={item.id} item={item} index={index}/> : null
                                 )
                                 :null

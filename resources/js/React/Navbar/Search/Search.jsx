@@ -12,7 +12,6 @@ const Search = () => {
     const logoWidth = useRef();
     const basketWidth = useRef();
     const selectionWidth = useRef();
-    const [windowWidth , setWindowWidth] = useState(window.screen.width);
     const [searchView , setSearchView] = useState(false);
     const [searchValue , setSearchValue] = useState('')
 
@@ -21,31 +20,32 @@ const Search = () => {
             logOut: true
         })
             .then(respons => {
-                // sessionStorage.setItem('user_id' , false);
                 setUser(respons.data)
             })
             .catch(error => console.log('no'))
     }
-    const windowHandler = () => {
-        setWindowWidth(window.screen.width)
-    }
-
-    window.addEventListener('resize' , windowHandler);
 
     return (
         <div className={`text-light px-4 d-flex align-items-center justify-content-center bg-dark ${styles.searchBox}`} dir={'rtl'}>
             <div ref={selectionWidth} className={`${styles.selection} d-flex align-items-center justify-content-between`}>
+                {
+                    searchView ? <div
+                            className={`${styles.searchFake} bg-dark opacity-50 position-absolute`}
+                            onClick={() => setSearchView(prevSearch => !prevSearch)}
+                        > </div>
+                        : null
+                }
 
-                <div className={'h-100 d-flex align-items-center justify-content-between'}>
-                    <Link to={'/'} ref={logoWidth} className={`me-5 ${styles.logoBox}`}>
+                <div className={`h-100 d-flex align-items-center justify-content-start ${styles.searchResponsive}`}>
+                    <Link to={'/'} ref={logoWidth} className={`${styles.logoBox}`}>
                         <img src={digiLogo} alt={'logo'} />
                     </Link>
-                    <div style={
-                        windowWidth > 1600 ? {width:`calc(1600px - 150px - 250px - 120px)`} :
-                            windowWidth > 1024 ? {width:`calc(${windowWidth}px - 150px - 250px - 120px)`} :
-                                windowWidth > 600 ? {width:`calc(${windowWidth}px - 250px - 120px)`} :
-                                    {width:`calc(${windowWidth}px - 50px)`} }
-                    >
+
+
+
+
+
+                    <div className={styles.searchDinamic}>
                         <div
                             className={`${styles.input} rounded-3 d-flex align-items-center justify-content-start p-2 shadow`}
 
@@ -88,13 +88,33 @@ const Search = () => {
                     </div>
                 </div>
 
-                {
-                    searchView ? <div
-                            className={`${styles.searchFake} bg-dark opacity-50 position-absolute`}
-                            onClick={() => setSearchView(prevSearch => !prevSearch)}
-                        > </div>
-                        : null
-                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <div ref={basketWidth} className={`align-items-center justify-content-around px-2 ${styles.basketBox}`}>
 

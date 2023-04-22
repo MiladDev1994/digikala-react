@@ -7,27 +7,14 @@ import {Link} from "react-router-dom";
 
 const SpecialCategoryVarieties = () => {
 
-    const homeView = useSelector(item => item.homeView.data);
-    const varieties = useSelector(item => item.varieties.data);
-    const categories = useSelector(item => item.category.data);
-
-    const newVarieties = varieties.filter(item =>
-        homeView.length && item.special === 1 &&
-        (item.categories.filter(element => (element.id === homeView[0].category_id)).length > 0  ?
-            (item.categories.filter(element => element.id === homeView[0].category_id))[0].id :
-            0) === homeView[0].category_id
-
-    )
-
-    const lastData = newVarieties.sort(() => Math.random() - 0.5)
-
+    const varieties = useSelector(item => item.homeView.data);
 
     return (
         <div className={'w-100 mt-4'} dir={'rtl'}>
             <div className={`${styles.box} m-auto px-3`} >
                 <div
                     className={`${styles.main} d-flex align-items-center justify-content-center rounded-3 shadow overflow-hidden px-3`}
-                    style={{backgroundColor: homeView.length ? homeView[0].image : 'transparent'}}
+                    style={{backgroundColor: varieties.length ? varieties[0][0].image : 'transparent'}}
                 >
                     <div className={`d-flex ${styles.firstChild}`}>
                         <div className={'w-50 h-100 d-flex align-items-center justify-content-center'}>
@@ -36,7 +23,7 @@ const SpecialCategoryVarieties = () => {
                         <div className={'w-50'}>
                             <h5 className={'text-center mt-1'} >شگفت انگیز</h5>
                             <h5 className={'text-center px-2'}>
-                                {homeView.length && categories.length ? categories.filter(item => item.id === homeView[0].category_id)[0].name : ''}
+                                {varieties.length ? varieties[0][0].category_id : ''}
                             </h5>
                         </div>
                     </div>
@@ -44,8 +31,8 @@ const SpecialCategoryVarieties = () => {
                     <div className={`d-flex ${styles.lastChild}`}>
                         <div className={`${styles.varieties} position-relative`}>
                             {
-                                lastData.length ?
-                                    lastData.map((item , index) =>
+                                varieties.length ?
+                                    varieties[2].map((item , index) =>
                                         <div
                                             key={item.id}
                                             className={'position-absolute d-flex align-items-center justify-content-center rounded-pill mt-2 ms-2'}
@@ -64,7 +51,7 @@ const SpecialCategoryVarieties = () => {
                         </div>
                         <div className={`${styles.btn} position-relative d-flex align-items-center justify-content-center`}>
                             <Link className={'position-absolute bg-danger p-2 d-flex text-light rounded-pill'}>
-                                <div>{`بیش از ${lastData.length-5} تنوع`}</div>
+                                <div>{`بیش از ${varieties.length && varieties[2].length-5 } تنوع`}</div>
                                 <i className={'bi-arrow-left ms-2'} />
                             </Link>
 
