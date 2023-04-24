@@ -9,13 +9,18 @@ use Illuminate\Http\Request;
 class VarietyController extends Controller
 {
     public function varieties(Request $request){
-//        dd($request['query']['brand'][0]);
+        if ($request['type'] === 'category'){
+
+        }
+//        dd($request['type']);
         $specialVarieties = Variety::query()
             ->with('product')
             ->with('categories')
             ->with('warranty')
             ->with('brand')
-            ->with('user');
+            ->with('user')
+            ->with('type')
+            ->where('category_list' , 'like' , '%/'.$request['id'].'/%');
             if ($request['query']['brand']){
                 $specialVarieties
                     ->whereIn('brand_id'  , $request['query']['brand']);
@@ -29,10 +34,10 @@ class VarietyController extends Controller
                     ->whereIn('shipping_time'  , $request['query']['shipping']);
             }
 
-            foreach ($request['query']['category'] as $Item){
-                $specialVarieties
-                    ->where('category_list' , 'like' , '%/'.$Item.'/%');
-            }
+//            foreach ($request['query']['category'] as $Item){
+//                $specialVarieties
+//                    ->where('category_list' , 'like' , '%/'.$Item.'/%');
+//            }
             if ($request['query']['sort']){
                 if ($request['query']['sort'][0] == 'new'){
                     $specialVarieties
@@ -45,7 +50,7 @@ class VarietyController extends Controller
                         ->orderBy('price_off');
                 }
             }
-            $specialVarieties = $specialVarieties->distinct()->get();
+            $specialVarieties = $specialVarieties->distinct()->paginate(12);
 
         return response()->json($specialVarieties);
     }

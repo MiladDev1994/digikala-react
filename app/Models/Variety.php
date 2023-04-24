@@ -26,6 +26,9 @@ class Variety extends Model
     }
 
     public function brand(){
-        return $this->belongsTo(Brand::class , 'brand_id' , 'name');
+        return $this->belongsTo(Brand::class , 'brand_id');
+    }
+    public function type(){
+        return $this->belongsTo(Color::class , 'variety' , 'id');
     }
 }

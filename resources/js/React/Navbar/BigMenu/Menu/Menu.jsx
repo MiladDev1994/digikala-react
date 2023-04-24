@@ -3,15 +3,28 @@ import styles from './Menu.module.css';
 import {Link} from "react-router-dom";
 import {useSelector , useDispatch} from "react-redux";
 import {MenuContext} from "../../Context/MenuContextProvider";
-// import {fetchApi} from "../../../Redux/Categories/categoryAction";
+import {queryStringContext} from "../../../Shop/Context/queryStringContextProvider";
 
 const Menu = () => {
 
+    const {query , setQuery} = useContext(queryStringContext);
     const {menu , setMenu} = useContext(MenuContext);
     const category = useSelector(element => element.category.data);
     const dispatch = useDispatch();
+
+    const queryHandler = () => {
+        setQuery({
+            category: [],
+            brand: [],
+            variety: [],
+            moreSell: [],
+            special: [],
+            price: [],
+            shipping: [],
+            sort: [],
+        })
+    }
     useEffect(() => {
-        // dispatch(fetchApi());
     } , [])
     return (
         <div className={`${styles.Box} position-absolute bg-dark shadow d-flex`}>
@@ -20,7 +33,7 @@ const Menu = () => {
                     category.map(item => item.level === 1 ?
                         <div key={item.id} className={`btn btn-dark rounded-0 d-flex ${styles.headItem}`} onClick={() => setMenu(false)}>
                             <img src={`http://127.0.0.1:8000/images/${item.logo}`} className={`${styles.logo} me-2 mt-1 opacity-50`}/>
-                            <Link to={`shop/category-${item.id}`} className={'w-100 text-start'}>{item.name}</Link>
+                            <Link to={`shop/category-${item.id}`} onClick={queryHandler} className={'w-100 text-start'}>{item.name}</Link>
                             <div className={`${styles.menuFooter} bg-dark p-3`} style={{cursor:'default'}}>
                                 {
                                     category.map(itemB => item.id === itemB.parent_id ?

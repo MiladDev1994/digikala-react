@@ -25,7 +25,7 @@ const Category = () => {
             setQuery({...query})
         }
     }
-
+console.log(query)
     useEffect(() => {
         dispatch(fetchBrandsApi());
     } , [])
@@ -45,8 +45,8 @@ const Category = () => {
                 <div className={`${styles.Data} p-2`}>
                     {brands.length ?
                         filter.map(item =>
-                            <div key={item.id} className={`position-relative p-2 mt-1 rounded-3 opacity-75 ${styles.item} ${query.brand.includes(item.name) ? 'bg-primary' : ''}`}>
-                                <input type={'checkbox'} checked={query.brand.includes(item.name) ? true : false} name={'brand'} value={item.name} onChange={queryStringHaandler} className={'position-absolute w-100 h-100 opacity-0'} style={{top: 0 , cursor:'pointer'}} />
+                            <div key={item.id} className={`position-relative p-2 mt-1 rounded-3 opacity-75 ${styles.item} ${query.brand.includes(`${item.id}`) ? 'bg-primary' : ''}`}>
+                                <input type={'checkbox'} checked={query.brand.includes(`${item.id}`) ? true : false} name={'brand'} value={item.id} onChange={queryStringHaandler} className={'position-absolute w-100 h-100 opacity-0'} style={{top: 0 , cursor:'pointer'}} />
                                 {item.name}
                             </div>
                         )

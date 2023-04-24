@@ -24,6 +24,8 @@ const BigMenu = () => {
             setScrollLocation(true)
         }
     }
+
+
     window.addEventListener('scroll' , scrollHandler)
 
 

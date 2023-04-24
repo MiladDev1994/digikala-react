@@ -19,6 +19,7 @@ const Last = () => {
     useEffect(() => {
         dispatch(fetchHomeViewApi());
     } , [])
+
     return (
         <QueryStringContextProvider>
             {loading.length ?

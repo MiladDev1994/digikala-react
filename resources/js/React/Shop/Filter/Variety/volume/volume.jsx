@@ -40,8 +40,8 @@ const Volume = () => {
                 <div className={`${styles.Data} p-2`}>
                     {data.length ?
                         filter.map(item =>
-                            <div key={item.id} className={`position-relative p-2 mt-1 rounded-3 opacity-75 ${styles.item} ${query.variety.includes(item.name) ? 'bg-primary' : ''}`}>
-                                <input type={'checkbox'} checked={query.variety.includes(item.name) ? true : false} name={'variety'} value={item.name} onChange={queryStringHaandler} className={'position-absolute w-100 h-100 opacity-0'} style={{top: 0 , cursor:'pointer'}} />
+                            <div key={item.id} className={`position-relative p-2 mt-1 rounded-3 opacity-75 ${styles.item} ${query.variety.includes(`${item.id}`) ? 'bg-primary' : ''}`}>
+                                <input type={'checkbox'} checked={query.variety.includes(`${item.id}`) ? true : false} name={'variety'} value={item.id} onChange={queryStringHaandler} className={'position-absolute w-100 h-100 opacity-0'} style={{top: 0 , cursor:'pointer'}} />
                                 {item.name}
                             </div>
                         )
