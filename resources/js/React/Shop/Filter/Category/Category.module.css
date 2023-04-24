@@ -1,0 +1,49 @@
+.head{
+    font-size: 17px;
+    opacity: 0.7;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.head:hover{
+    background-color: #414141;
+}
+.headIconShow{
+    transform: rotate(180deg);
+    transition: 0.3s;
+}
+.headIconHidden{
+    transform: rotate(0);
+    transition: 0.3s;
+}
+.listShow{
+    height: 250px;
+    transition: 0.3s;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+.listHidden{
+    height: 0;
+    transition: 0.3s;
+    overflow: hidden;
+}
+.input{
+    outline: none;
+    border: none;
+}
+.input::placeholder{
+    color: #646464;
+}
+.Data{
+    height: 215px;
+    overflow: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #3a3a3a transparent;
+}
+.item{
+    font-size: 14px;
+    transition: 0.3s;
+    background-color: #282828;
+}
+.item:hover{
+    background-color: #434343;
+}

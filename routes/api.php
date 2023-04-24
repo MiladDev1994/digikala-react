@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\categoryController;
 use App\Http\Controllers\Api\HomeViewController;
 use App\Http\Controllers\Api\SliderController;
+use App\Http\Controllers\Api\TypesController;
 use App\Http\Controllers\Api\VarietyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,7 @@ Route::apiResource('category' , categoryController::class);
 Route::apiResource('carousel' , SliderController::class);
 Route::apiResource('brands' , BrandController::class);
 Route::apiResource('articles' , ArticleController::class);
+Route::apiResource('types' , TypesController::class);
 
 Route::get('loginedIn' , [AuthController::class , 'loginedIn']);
 Route::post('register' , [AuthController::class , 'register']);

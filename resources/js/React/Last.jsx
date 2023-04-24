@@ -9,6 +9,7 @@ import {fetchHomeViewApi} from "./Redux/HomeView/HmeViewAction";
 import {BeatLoader} from "react-spinners";
 import Article from "./Article/Article";
 import Shop from "./Shop/Shop";
+import QueryStringContextProvider from "./Shop/Context/queryStringContextProvider";
 
 const Last = () => {
 
@@ -19,7 +20,7 @@ const Last = () => {
         dispatch(fetchHomeViewApi());
     } , [])
     return (
-        <>
+        <QueryStringContextProvider>
             {loading.length ?
                 <div>
                     < Navbar />
@@ -29,7 +30,7 @@ const Last = () => {
                             <Route path={'/'} element={<Home />} />
                             <Route path={'/article/:id'} element={ <Article /> } />
                             <Route path={'/shop/:id'} element={ <Shop /> } />
-                            <Route path={'/shop/moreSell'} element={ <Shop /> } />
+                            <Route path={'/shop/moreSell'} element={  <Shop />  } />
                         </Routes>
                     </div>
                     < Footer />
@@ -48,7 +49,7 @@ const Last = () => {
                 </div>
 
             }
-        </>
+        </QueryStringContextProvider>
 
     );
 };
