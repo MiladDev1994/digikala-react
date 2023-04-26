@@ -24,18 +24,18 @@ const Category = () => {
     }
 
     return (
-        <div className={'w-100 text-light '}>
+        <div className={'w-100 text-light rounded-3 border border-secondary border-opacity-25 shadow'}>
             <div onClick={() => setAccordion(prevAccordion => !prevAccordion)} className={`${styles.head}  d-flex align-items-center justify-content-between py-2 px-3`}>
                 <div className={1}>دسته ها</div>
                 <i className={`${accordion ? styles.headIconShow : styles.headIconHidden} bi-chevron-down`}/>
             </div>
 
-            <div className={`${accordion ? styles.listShow : styles.listHidden} border-bottom border-secondary border-opacity-25`}>
+            <div className={`${accordion ? styles.listShow : styles.listHidden}`}>
                 <div className={'w-100 d-flex px-2 mt-2'}>
                     <input type={'text'} value={search} onChange={e => setSearch(e.target.value)} className={`${styles.input} w-100 bg-dark rounded-3 text-light text-center py-1 shadow`} placeholder={'جستوجو....'}/>
                 </div>
 
-                <div className={`${styles.Data} p-2`}>
+                <div className={`${styles.Data} p-2 ms-2`}>
                     {categories.length ?
                         filter.map(item =>
                             <div key={item.id} className={`position-relative p-2 mt-1 rounded-3 opacity-75 ${styles.item} ${query.category.includes(`${item.id}`) ? 'bg-primary' : ''}`}>

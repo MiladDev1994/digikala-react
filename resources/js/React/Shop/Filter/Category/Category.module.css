@@ -18,8 +18,7 @@
 .listShow{
     height: 250px;
     transition: 0.3s;
-    overflow: scroll;
-    scrollbar-width: none;
+    overflow: hidden;
 }
 .listHidden{
     height: 0;

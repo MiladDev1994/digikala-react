@@ -16,7 +16,7 @@ const Search = () => {
     const [searchValue , setSearchValue] = useState('')
 
     const logOutHandler = () => {
-        axios.post('api/logOut' , {
+        axios.post('/api/logOut' , {
             logOut: true
         })
             .then(respons => {

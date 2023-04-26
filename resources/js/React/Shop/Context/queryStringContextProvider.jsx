@@ -13,7 +13,8 @@ const QueryStringContextProvider = ({children}) => {
         variety: [],
         moreSell: [],
         special: [],
-        price: [],
+        minPrice: [],
+        maxPrice: [],
         shipping: [],
         sort: [],
     })
@@ -21,8 +22,6 @@ const QueryStringContextProvider = ({children}) => {
     useEffect(() => {
         setQuery({...query , ...queryS})
     } , [])
-
-
 
     useEffect(() => {
         setSearchParams(query)

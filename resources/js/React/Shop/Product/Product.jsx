@@ -9,14 +9,11 @@ const Product = () => {
     const [variety , setVariety] = useState([]);
     const {query , setQuery} = useContext(queryStringContext);
     const [page , setPage] = useState(1)
-    const location = useLocation();
     const params = useParams();
-
-    const pathName = location.pathname
-    // console.log()
 
     const id = params.id.split('-')[1];
     const types = params.id.split('-')[0];
+
 
     const getData = async () => {
         const response = await axios.post(`/api/varieties?page=${page}` , {
@@ -52,30 +49,21 @@ const Product = () => {
             getData():
             setPage(1);
         document.documentElement.scrollTop = 0;
-    } , [query]);
-
-    // useEffect(() => {
-    //     setQuery({
-    //         category: [],
-    //         brand: [],
-    //         variety: [],
-    //         moreSell: [],
-    //         special: [],
-    //         price: [],
-    //         shipping: [],
-    //         sort: [],
-    //     })
-    // } , [pathName])
+    } , [query , params]);
 
     return (
         <div>
             {variety.length ?
                 variety.map((item , index) =>
-                    <div key={item.id} className={'text-light'} style={{height: '230px'}}>
+                    <div key={item.id} className={'text-light'} style={{height: '400px'}}>
                         <img height={'100px'} className={'d-block'} src={`http://127.0.0.1:8000/images/${item.product[0].image.split(',')[0]}`} />
                         <h3>{item.brand.name}</h3>
                         <h3>{item.id}</h3>
                         <h3>{item.type.name}</h3>
+                        <h3>{item.shipping_time} : shipping_time</h3>
+                        <h3>{item.moreSell} : moreSell</h3>
+                        <h3>{item.special} : special</h3>
+                        <h3>{(item.price_off / 10).toLocaleString()} : price</h3>
                     </div>
                 )
                 : null

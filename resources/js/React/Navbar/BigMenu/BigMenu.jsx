@@ -3,9 +3,11 @@ import styles from './BigMenu.module.css'
 import {Link} from "react-router-dom";
 import Menu from "./Menu/Menu";
 import {MenuContext} from "../Context/MenuContextProvider";
+import {queryStringContext} from "../../Shop/Context/queryStringContextProvider";
 
 const BigMenu = () => {
 
+    const {query , setQuery} = useContext(queryStringContext);
     const [snake , setSnake] = useState({
         location: '0px',
         width: '0px',
@@ -23,6 +25,20 @@ const BigMenu = () => {
         }else {
             setScrollLocation(true)
         }
+    }
+
+    const queryHandler = () => {
+        setMenu(false)
+        setQuery({
+            category: [],
+            brand: [],
+            variety: [],
+            moreSell: [],
+            special: [],
+            price: [],
+            shipping: [],
+            sort: [],
+        })
     }
 
 
@@ -67,7 +83,7 @@ const BigMenu = () => {
                             onMouseOver={() => setSnake({location: "135px" , width: "78px"})}
                             onMouseLeave={() => setSnake({location: "135px" , width: "0px"})}
                         >
-                            <Link className={'d-flex align-items-center justify-content-center'} to={'/#'}>
+                            <Link className={'d-flex align-items-center justify-content-center'} to={'/#'} onClick={queryHandler}>
                                 <i className={'bi-list h5 mt-2'} />
                                 <div>سوپرمارکت</div>
                             </Link>
@@ -77,7 +93,7 @@ const BigMenu = () => {
                             onMouseOver={() => setSnake({location: "237px" , width: "87px"})}
                             onMouseLeave={() => setSnake({location: "237px" , width: "0px"})}
                         >
-                            <Link className={'d-flex align-items-center justify-content-center'} to={'shop/moreSell'}>
+                            <Link className={'d-flex align-items-center justify-content-center'} to={'shop/moreSell'} onClick={queryHandler}>
                                 <i className={'bi-list h5 mt-2'} />
                                 <div>پرفروش&zwnj;ترین&zwnj;ها</div>
                             </Link>
@@ -97,14 +113,14 @@ const BigMenu = () => {
                             onMouseOver={() => setSnake({location: "508px" , width: "85px"})}
                             onMouseLeave={() => setSnake({location: "508px" , width: "0px"})}
                         >
-                            <Link className={'d-flex align-items-center justify-content-center'} to={'shop/special'}>
+                            <Link className={'d-flex align-items-center justify-content-center'} to={'shop/special'} onClick={queryHandler}>
                                 <i className={'bi-list h5 mt-2'} />
                                 <div>شگفت&zwnj;انگیز&zwnj;ها</div>
                             </Link>
                         </li>
 
                         <li>
-                            <Link className={'d-flex align-items-center justify-content-center h-100'} to={'/#'}>
+                            <Link className={'d-flex align-items-center justify-content-center h-100'} to={'/'} onClick={queryHandler}>
                                 <div>در دیجیکالا بفروشید!</div>
                             </Link>
                         </li>

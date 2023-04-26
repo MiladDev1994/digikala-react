@@ -1,0 +1,8 @@
+.item{
+    font-size: 14px;
+    transition: 0.3s;
+    background-color: #282828;
+}
+.item:hover{
+    background-color: #434343;
+}

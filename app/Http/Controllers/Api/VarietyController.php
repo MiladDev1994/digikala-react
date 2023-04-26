@@ -33,6 +33,14 @@ class VarietyController extends Controller
                 $specialVarieties
                     ->whereIn('shipping_time'  , $request['query']['shipping']);
             }
+            if ($request['query']['moreSell']){
+                $specialVarieties
+                    ->where('moreSell'  , 1);
+            }
+            if ($request['query']['special']){
+                $specialVarieties
+                    ->where('special'  , 1);
+            }
 
 //            foreach ($request['query']['category'] as $Item){
 //                $specialVarieties

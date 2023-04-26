@@ -15,7 +15,7 @@ const Variety = () => {
     } , [])
 
     return (
-        <div className={'border rounded-2 border-secondary border-opacity-25 mt-4 p-2'}>
+        <div className={'border rounded-2 border-secondary border-opacity-25 mt-2 p-2  shadow'}>
             <div style={{fontSize: '16px'}} className={'text-light pb-2 px-1 opacity-75 text-center'}> تنوع ها </div>
             <Color />
             <Size />

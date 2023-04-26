@@ -16,7 +16,7 @@
     transition: 0.3s;
 }
 .listShow{
-    height: 250px;
+    height: 220px;
     transition: 0.3s;
     overflow: hidden;
 }
@@ -32,12 +32,7 @@
 .input::placeholder{
     color: #646464;
 }
-.Data{
-    height: 215px;
-    overflow: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: #3a3a3a transparent;
-}
+
 .item{
     font-size: 14px;
     transition: 0.3s;

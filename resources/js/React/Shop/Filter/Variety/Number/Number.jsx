@@ -37,7 +37,7 @@ const Number = () => {
                     <input type={'text'} value={search} onChange={e => setSearch(e.target.value)} className={`${styles.input} w-100 bg-dark rounded-3 text-light text-center py-1 shadow`} placeholder={'جستوجو....'}/>
                 </div>
 
-                <div className={`${styles.Data} p-2`}>
+                <div className={`${styles.Data} p-2 ms-2`}>
                     {data.length ?
                         filter.map(item =>
                             <div key={item.id} className={`position-relative p-2 mt-1 rounded-3 opacity-75 ${styles.item} ${query.variety.includes(`${item.id}`) ? 'bg-primary' : ''}`}>
