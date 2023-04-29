@@ -9,22 +9,64 @@ use Illuminate\Http\Request;
 class VarietyController extends Controller
 {
     public function varieties(Request $request){
-        if ($request['type'] === 'category'){
 
-        }
-//        dd($request['type']);
         $specialVarieties = Variety::query()
             ->with('product')
             ->with('categories')
             ->with('warranty')
             ->with('brand')
             ->with('user')
-            ->with('type')
+            ->with('type');
+//            ->orderBy('type');
+        if ($request['type'] === 'category'){
+            $specialVarieties
             ->where('category_list' , 'like' , '%/'.$request['id'].'/%');
+
+        }else {
+            if ($request['query']['category']){
+                foreach ($request['query']['category'] as $Item){
+                    $specialVarieties
+                        ->where('category_list' , 'like' , '%/'.$Item.'/%');
+                }
+            }
+        }
+
+        if ($request['type'] === 'brand'){
+            $specialVarieties
+                ->where('brand_id' , $request['id']);
+        }else{
             if ($request['query']['brand']){
                 $specialVarieties
                     ->whereIn('brand_id'  , $request['query']['brand']);
             }
+        }
+
+        if ($request['type'] === 'moreSell'){
+            $specialVarieties
+                ->where('moreSell'  , 1);
+        }else{
+            if ($request['query']['moreSell']){
+                $specialVarieties
+                    ->where('moreSell'  , 1);
+            }
+        }
+
+        if ($request['type'] === 'special'){
+            $specialVarieties
+                ->where('special'  , 1);
+        }else{
+            if ($request['query']['special']){
+                $specialVarieties
+                    ->where('special'  , 1);
+            }
+        }
+
+        if ($request['type'] === 'seller'){
+            $specialVarieties
+                ->where('user_id'  , $request['id']);
+        }
+
+
             if ($request['query']['variety']){
                 $specialVarieties
                     ->whereIn('variety'  , $request['query']['variety']);
@@ -33,29 +75,32 @@ class VarietyController extends Controller
                 $specialVarieties
                     ->whereIn('shipping_time'  , $request['query']['shipping']);
             }
-            if ($request['query']['moreSell']){
+
+
+            if ($request['query']['minPrice'] && !$request['query']['maxPrice']){
                 $specialVarieties
-                    ->where('moreSell'  , 1);
+                    ->where('price_off' , '>='  , intval($request['query']['minPrice'][0]) * 10);
             }
-            if ($request['query']['special']){
+            if ($request['query']['maxPrice'] && !$request['query']['minPrice']){
                 $specialVarieties
-                    ->where('special'  , 1);
+                    ->where('price_off' , '<='  , intval($request['query']['maxPrice'][0]) * 10);
+            }
+            if ($request['query']['maxPrice'] && $request['query']['minPrice']){
+                $specialVarieties
+                    ->whereBetween('price_off' , [intval($request['query']['minPrice'][0]) * 10 , intval($request['query']['maxPrice'][0]) * 10] );
             }
 
-//            foreach ($request['query']['category'] as $Item){
-//                $specialVarieties
-//                    ->where('category_list' , 'like' , '%/'.$Item.'/%');
-//            }
+
             if ($request['query']['sort']){
                 if ($request['query']['sort'][0] == 'new'){
                     $specialVarieties
                         ->orderBy('created_at' , 'desc');
                 }else if ($request['query']['sort'][0] == 'expensive'){
                     $specialVarieties
-                        ->orderBy('price_off' , 'desc');
-                }else if ($request['query']['sort'][0] == 'Inexpensive'){
-                    $specialVarieties
                         ->orderBy('price_off');
+                }else if ($request['query']['sort'][0] == 'inexpensive'){
+                    $specialVarieties
+                        ->orderBy('price_off' , 'desc');
                 }
             }
             $specialVarieties = $specialVarieties->distinct()->paginate(12);

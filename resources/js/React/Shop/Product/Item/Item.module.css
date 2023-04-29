@@ -1,0 +1,109 @@
+.box{
+    width: 20% !important;
+    height: 430px;
+    padding: 4px;
+    transition: 0.3s;
+    display: inline-block;
+    position: relative;
+}
+
+.item{
+    width: 95%;
+    height: 98%;
+    transition: 0.3s;
+    background-color: #2d2d2d;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+
+}
+.box:hover .item{
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.45);
+    top: 0;
+}
+
+
+.imageBox{
+    padding: 5px;
+    width: 100%;
+    height: 53%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    border-radius: 4px;
+}
+
+.name{
+    height: 80px;
+    overflow: hidden;
+    line-height: 1.7;
+    font-size: 13px;
+    text-align: center;
+}
+.price_offBox{
+    height: 27px;
+}
+.price{
+    margin-top: 20px;
+}
+.priceOff{
+    text-decoration: line-through;
+}
+
+@media (max-width: 1500px) {
+    .box{
+        width: 25% !important;
+    }
+}
+@media (max-width: 1350px) {
+    .box{
+        width: 33% !important;
+    }
+}
+@media (max-width: 780px) {
+    .box{
+        width: 50% !important;
+    }
+}
+@media (max-width: 550px) {
+    .box{
+        width: 100% !important;
+        height: 150px;
+    }
+    .item{
+        width: 100%;
+        right: 0;
+        flex-direction: row;
+    }
+
+    .imageBox{
+        padding: 5px;
+        height: 100%;
+        width: 130px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s;
+        border-radius: 4px;
+    }
+    .detaileBox{
+        width: calc(100% - 130px);
+        height: 100%;
+    }
+    .name{
+        padding: 0 10px;
+        height: 50px;
+        text-align: start;
+    }
+    .price{
+        margin-top: 0;
+    }
+    .price_offBox{
+        padding: 0 30px!important;
+    }
+}

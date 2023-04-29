@@ -13,6 +13,10 @@ class Category extends Model
         return $this->hasMany(Category::class ,'parent_id' , 'id');
     }
 
+    public function Parent(){
+        return $this->hasMany(Category::class ,'id' , 'parent_id');
+    }
+
     public function products(){
         return $this->morphedByMany(Product::class , 'categoryable');
     }

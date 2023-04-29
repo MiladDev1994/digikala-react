@@ -12,4 +12,8 @@ class Product extends Model
 //    public function categories(){
 //        return $this->morphToMany(Categories::class , 'categoryable');
 //    }
+
+//    public function varieties(){
+//        return $this->hasMany(Variety::class , 'dkp');
+//    }
 }

@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 const SpecialCategoryVarieties = () => {
 
     const varieties = useSelector(item => item.homeView.data);
+    const category = useSelector(item => item.category.data);
 
     return (
         <div className={'w-100 mt-4'} dir={'rtl'}>
@@ -23,7 +24,10 @@ const SpecialCategoryVarieties = () => {
                         <div className={'w-50'}>
                             <h5 className={'text-center mt-1'} >شگفت انگیز</h5>
                             <h5 className={'text-center px-2'}>
-                                {varieties.length ? varieties[0][0].category_id : ''}
+                                {category.length && varieties.length ?
+                                    category.filter(item => item.id === varieties[0][0].category_id)[0].name
+                                     : null
+                                }
                             </h5>
                         </div>
                     </div>

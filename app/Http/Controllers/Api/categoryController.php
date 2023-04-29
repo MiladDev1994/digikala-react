@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class categoryController extends Controller
 {
     public function index(){
-        $categories = Category::query()->with('Child')->get();
+        $categories = Category::query()->with('Child')->with('Parent')->get();
         return response()->json($categories);
     }
 }

@@ -1,0 +1,23 @@
+.sortItem{
+    font-size: 14px;
+    transition: 0.3s;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sortItem:hover{
+    background-color: #2d2d2d;
+    cursor: pointer;
+}
+
+.filterBox{
+    display: flex;
+}
+
+@media (max-width: 1024px) {
+    .filterBox{
+        display: none;
+    }
+}

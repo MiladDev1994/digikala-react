@@ -20,7 +20,8 @@ const Menu = () => {
             variety: [],
             moreSell: [],
             special: [],
-            price: [],
+            minPrice: [],
+            maxPrice: [],
             shipping: [],
             sort: [],
         })

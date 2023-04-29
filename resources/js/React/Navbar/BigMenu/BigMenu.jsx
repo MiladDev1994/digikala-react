@@ -35,7 +35,8 @@ const BigMenu = () => {
             variety: [],
             moreSell: [],
             special: [],
-            price: [],
+            minPrice: [],
+            maxPrice: [],
             shipping: [],
             sort: [],
         })
@@ -83,7 +84,7 @@ const BigMenu = () => {
                             onMouseOver={() => setSnake({location: "135px" , width: "78px"})}
                             onMouseLeave={() => setSnake({location: "135px" , width: "0px"})}
                         >
-                            <Link className={'d-flex align-items-center justify-content-center'} to={'/#'} onClick={queryHandler}>
+                            <Link className={'d-flex align-items-center justify-content-center'} to={'shop/category-4'} onClick={queryHandler}>
                                 <i className={'bi-list h5 mt-2'} />
                                 <div>سوپرمارکت</div>
                             </Link>
@@ -93,7 +94,7 @@ const BigMenu = () => {
                             onMouseOver={() => setSnake({location: "237px" , width: "87px"})}
                             onMouseLeave={() => setSnake({location: "237px" , width: "0px"})}
                         >
-                            <Link className={'d-flex align-items-center justify-content-center'} to={'shop/moreSell'} onClick={queryHandler}>
+                            <Link className={'d-flex align-items-center justify-content-center'} to={'shop/moreSell-on'} onClick={queryHandler}>
                                 <i className={'bi-list h5 mt-2'} />
                                 <div>پرفروش&zwnj;ترین&zwnj;ها</div>
                             </Link>
@@ -103,7 +104,7 @@ const BigMenu = () => {
                             onMouseOver={() => setSnake({location: "355px" , width: "125px"})}
                             onMouseLeave={() => setSnake({location: "355px" , width: "0px"})}
                         >
-                            <Link className={'d-flex align-items-center justify-content-center'} to={'/#'}>
+                            <Link className={'d-flex align-items-center justify-content-center'} onClick={e => e.preventDefault()}>
                                 <i className={'bi-list h5 mt-2'} />
                                 <div>تخفیف&zwnj;ها و پیشنهاد&zwnj;ها</div>
                             </Link>
@@ -113,7 +114,7 @@ const BigMenu = () => {
                             onMouseOver={() => setSnake({location: "508px" , width: "85px"})}
                             onMouseLeave={() => setSnake({location: "508px" , width: "0px"})}
                         >
-                            <Link className={'d-flex align-items-center justify-content-center'} to={'shop/special'} onClick={queryHandler}>
+                            <Link className={'d-flex align-items-center justify-content-center'} to={'shop/special-on'} onClick={queryHandler}>
                                 <i className={'bi-list h5 mt-2'} />
                                 <div>شگفت&zwnj;انگیز&zwnj;ها</div>
                             </Link>

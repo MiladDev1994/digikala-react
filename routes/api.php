@@ -44,3 +44,4 @@ Route::post('login' , [AuthController::class , 'login']);
 Route::post('logOut' , [AuthController::class , 'logOut']);
 Route::get('getApi' , [HomeViewController::class , 'getApi']);
 Route::post('varieties' , [VarietyController::class , 'varieties']);
+Route::get('product/{product}' , [HomeViewController::class , 'productDetails']);

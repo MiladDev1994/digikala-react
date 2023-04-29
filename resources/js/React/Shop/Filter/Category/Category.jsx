@@ -14,9 +14,9 @@ const Category = () => {
 
     const queryStringHaandler = (e) => {
             if (e.target.checked){
-                setQuery({...query , ...query[e.target.name].push(Number(e.target.value))})
+                setQuery({...query , ...query[e.target.name].push(e.target.value)})
             }else {
-                let index = query[e.target.name].indexOf(Number(e.target.value))
+                let index = query[e.target.name].indexOf(e.target.value)
 
                 query[e.target.name].splice(index , 1);
                 setQuery({...query})
