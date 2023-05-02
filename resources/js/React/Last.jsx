@@ -10,7 +10,8 @@ import {BeatLoader} from "react-spinners";
 import Article from "./Article/Article";
 import Shop from "./Shop/Shop";
 import QueryStringContextProvider from "./Shop/Context/queryStringContextProvider";
-import Product from "./Product/Product";
+// import Product from "./Product/Product";
+import Index from "./Product/index";
 
 const Last = () => {
 
@@ -32,7 +33,7 @@ const Last = () => {
                             <Route path={'/'} element={<Home />} />
                             <Route path={'/article/:id'} element={ <Article /> } />
                             <Route path={'/shop/:id'} element={ <Shop /> } />
-                            <Route path={'/product/:id'} element={ <Product /> } />
+                            <Route path={'/product/:id'} element={ <Index /> } />
                         </Routes>
                     </div>
                     < Footer />

@@ -1,0 +1,17 @@
+.items{
+    width: 180px;
+    text-decoration: none;
+}
+.detail{
+    width: 100%;
+    height: 60px;
+}
+.priceOff{
+    font-size: 14px;
+    font-weight: 700;
+}
+.price{
+    font-size: 14px;
+    text-decoration:line-through;
+
+}

@@ -1,0 +1,20 @@
+.bigBox{
+    display: block;
+}
+.main{
+    background-color: #2a2a2a;
+}
+.paddingControl{
+    padding: 10px 0;
+}
+.otherSellers{
+    display: none;
+}
+@media (max-width: 1024px) {
+    .bigBox{
+        display: none;
+    }
+    .otherSellers{
+        display: block;
+    }
+}

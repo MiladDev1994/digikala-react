@@ -1,0 +1,40 @@
+.imageBox{
+    width: 34%;
+    /*height: 400px;*/
+}
+.favorite{
+    width: 100%;
+    height: 30px;
+}
+.imageBig{
+    display: flex;
+    cursor: pointer;
+}
+.imageList{
+    width: 18%;
+    height: 70px;
+    background-size: cover;
+    background-position: center;
+}
+.carouselBoxBigImage{
+    height: 70vh;
+}
+.imageCover{
+    height: calc(70vh - 40px);
+}
+.carouselBox{
+    display: none;
+}
+
+
+@media (max-width: 1024px) {
+    .imageBox{
+        width: 100%;
+    }
+    .imageBig{
+        display: none;
+    }
+    .carouselBox{
+        display: block;
+    }
+}

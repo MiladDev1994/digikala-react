@@ -1,0 +1,9 @@
+.typeBox{
+    width: 37%;
+}
+
+@media (max-width: 1024px) {
+    .typeBox{
+        width: 100%;
+    }
+}

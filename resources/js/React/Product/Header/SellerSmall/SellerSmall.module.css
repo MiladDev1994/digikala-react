@@ -1,0 +1,17 @@
+.minPriceBox{
+    display: none;
+}
+.paddingControl{
+    padding: 10px 20px;
+}
+.sellerShop{
+    transition: 0.3s;
+}
+.sellerShop:hover{
+    background: #545454;
+}
+@media (max-width: 1024px) {
+    .minPriceBox{
+        display: block;
+    }
+}

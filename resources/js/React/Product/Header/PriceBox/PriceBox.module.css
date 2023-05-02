@@ -1,0 +1,70 @@
+.priceBox{
+    width: 29%;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+}
+.paddingControl{
+    padding: 3.5%;
+    display: flex;
+}
+.sellerShop{
+    transition: 0.3s;
+}
+.sellerShop:hover{
+    background-color: #414141;
+}
+.itemPrice{
+    width: 90%;
+    height: 83%;
+    bottom: 10px;
+    right: 5%;
+    position: relative;
+    background-color: #2d2d2d;
+
+}
+.basketBtn{
+    width: 100%;
+    bottom: 7%;
+    right: 0;
+    position: absolute;
+}
+
+@media (max-width: 1024px) {
+    .priceBox{
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        height: 100px;
+        z-index: 2;
+    }
+    .itemPrice{
+        width: 100%;
+        height: 100%;
+        bottom: 10px;
+        display: flex;
+        flex-direction: row!important;
+        position: unset;
+        border-radius: 0!important;
+        padding: 0!important;
+    }
+    .paddingControl{
+        display: none!important;
+    }
+    .basketBtn{
+        position: unset;
+    }
+    .priceControl{
+        width: 280px;
+        padding: 0!important;
+    }
+    .priceFee{
+        padding: 10px 3px!important;
+    }
+
+}
+@media (max-width: 600px) {
+    .priceBox{
+        bottom: 60px;
+    }
+}
