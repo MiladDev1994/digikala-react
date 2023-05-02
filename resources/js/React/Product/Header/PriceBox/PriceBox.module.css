@@ -29,6 +29,12 @@
     right: 0;
     position: absolute;
 }
+.basketBtnBox{
+    transition: 0.3s;
+}
+.basketBtnBox:hover{
+    background-color: rgba(175, 14, 46, 0.4) !important;
+}
 
 @media (max-width: 1024px) {
     .priceBox{

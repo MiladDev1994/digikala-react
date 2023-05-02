@@ -6,6 +6,7 @@ import homeViewReducer from "./HomeView/HomeViewReducer";
 import BrandsReducer from "./Brands/BrandsReducer";
 import ArticlesReducer from "./Articles/ArticlesReducer";
 import TypesReducer from "./Types/TypesReducer";
+import BasketReducer from "./Basket/BasketReducer";
 
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     brand: BrandsReducer,
     articles: ArticlesReducer,
     types: TypesReducer,
+    basket: BasketReducer,
 })
 
 export default rootReducer;

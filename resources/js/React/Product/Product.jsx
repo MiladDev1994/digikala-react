@@ -5,6 +5,7 @@ import ShowProductContextProvider from "./Context/ShowProductContextProvider";
 import OtherSellers from "./OtherSellers/OtherSellers";
 import About from "./About/About";
 import Similar from "./Similar/Similar";
+import Comments from "./Comments/Comments";
 
 const Product = () => {
 
@@ -16,6 +17,7 @@ const Product = () => {
                     <OtherSellers />
                     <About />
                     <Similar />
+                    <Comments />
                 </div>
             </div>
         </ShowProductContextProvider>

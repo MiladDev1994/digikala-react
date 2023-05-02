@@ -1,13 +1,15 @@
 import React, {useContext, useEffect, useState} from 'react';
+import {UserContext} from "../../../Context/UseContextProvider";
 import styles from "./ImageBox.module.css";
 import Modal from "react-bootstrap/Modal";
 import Carousel from "react-bootstrap/Carousel";
 import {ProductContext} from "../../Context/ProductContexProvider";
 import axios from "axios";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 const ImageBox = () => {
 
+    const {user , setUser} = useContext(UserContext);
     const {product , favorite} = useContext(ProductContext);
     const [showModal, setShowModal] = useState(false);
     const params = useParams()
@@ -32,10 +34,17 @@ const ImageBox = () => {
     return (
         <div className={`${styles.imageBox} d-flex align-items-center justify-content-center flex-column`}>
             <div className={`${styles.favorite}`}>
-                {favoriteResponse.length ?
-                    <i className={'bi-heart-fill h3 px-4 text-danger'} style={{cursor: 'pointer'}} onClick={() => favoriteHandler(false)}/> :
-                    <i className={'bi-heart h3 px-4 text-light opacity-50'} style={{cursor: 'pointer'}} onClick={() => favoriteHandler(true)}/>
+                {user.length ?
+                    <>
+                    {favoriteResponse.length ?
+                            <i className={'bi-heart-fill h3 px-4 text-danger'} style={{cursor: 'pointer'}} onClick={() => favoriteHandler(false)}/> :
+                            <i className={'bi-heart h3 px-4 text-light opacity-50'} style={{cursor: 'pointer'}} onClick={() => favoriteHandler(true)}/>
+                    }
+                    </>:
+                    <Link to={'/login'} className={'bi-heart h3 px-4 text-light opacity-50'} />
+
                 }
+
             </div>
 
             {/*bigImage*/}

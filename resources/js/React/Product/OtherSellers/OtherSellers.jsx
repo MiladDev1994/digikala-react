@@ -6,9 +6,16 @@ import {Link} from "react-router-dom";
 import Toman from "../../../../../public/images/tomanLight.svg";
 import {ShowProductContext} from "../Context/ShowProductContextProvider";
 import Modal from 'react-bootstrap/Modal';
+import {useSelector , useDispatch} from "react-redux";
+import {Add , Increase , Decrease , Remove} from "../../Redux/Basket/BasketAction";
+import useIsInBasket from "../Hook/BasketHooks/useIsInBasket";
+import useQuantity from "../Hook/BasketHooks/useQuantity";
 
 const OtherSellers = () => {
 
+    const basket = useSelector(item => item.basket);
+    const dispatch = useDispatch();
+console.log(basket)
     const {product , favorite} = useContext(ProductContext);
     const [productDown , setProductDown] = useState([])
     const {show , setShow} = useContext(ShowProductContext);
@@ -48,13 +55,15 @@ const OtherSellers = () => {
                             </div>
 
                             <div style={{width: '21%'}} className={`ps-3 text-light ${styles.priceControl}`}>
-                                <div className={`d-flex align-items-center justify-content-between mt-1 ${styles.priceFee}`}>
-                                    <div className={`bg-danger rounded-pill px-2 shadow`}>{`${Math.round((1 - (item.price_off / item.price)) * 100)}%`}</div>
-                                    <div className={`opacity-50`} style={{textDecoration: 'line-through'}}>{item.price.toLocaleString()}</div>
-                                </div>
-
+                                {item.price_off !== item.price ?
+                                    <div className={`d-flex align-items-center justify-content-between mt-1 ${styles.priceFee}`}>
+                                        <div className={`bg-danger rounded-pill px-2 shadow`}>{`${Math.round((1 - (item.price_off / item.price)) * 100)}%`}</div>
+                                        <div className={`opacity-50`} style={{textDecoration: 'line-through'}}>{(item.price / 10).toLocaleString()}</div>
+                                    </div>
+                                    : null
+                                }
                                 <div className={`d-flex align-items-center justify-content-center px-3 `}>
-                                    <div className={`mt-2`}>{item.price_off.toLocaleString()}</div>
+                                    <div className={`mt-2`}>{(item.price_off / 10).toLocaleString()}</div>
                                     <img height={'25px'} src={Toman}  className={'mt-2'}/>
                                 </div>
                             </div>
@@ -115,7 +124,39 @@ const OtherSellers = () => {
                                             </div>
 
                                             <div className={`${styles.basketBtn} d-flex align-items-center justify-content-center`}>
-                                                <button className={`btn w-75  btn-danger shadow py-2  `}>افزودن به سبد خرید</button>
+                                                <div className={ `w-75 bg-danger rounded-2 text-center shadow overflow-hidden d-flex align-items-center justify-content-center` } style={{height: '44px'}} dir={'rtl'}>
+                                                    {
+                                                        useIsInBasket(basket , item.id) ?
+                                                            <div
+                                                                className={"bi-plus-lg mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle "}
+                                                                onClick={() => dispatch(Increase(item))}
+                                                                style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                            ></div> :
+                                                            <div className={`w-100 h-100 p-2 bg-danger ${styles.basketBtnBox}`} onClick={() => dispatch(Add(item))} style={{transition:"0.3s", cursor: 'pointer'}}> افزودن به سبد خرید </div>
+                                                    }
+
+                                                    {
+                                                        useQuantity(basket , item.id) && <div
+                                                            className={" mt-2 m-2 d-flex align-items-center justify-content-center  text-dark h3 bg-danger p-1 rounded-circle"}
+                                                            style={{width: '30px', height: '30px',transition:"0.3s"}}
+                                                        >{useQuantity(basket , item.id)}</div>
+                                                    }
+
+                                                    {
+                                                        useQuantity(basket , item.id) === 1 && <div
+                                                            className={"bi-trash3 mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle "}
+                                                            onClick={() => dispatch(Remove(item))}
+                                                            style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                        ></div>
+                                                    }
+                                                    {
+                                                        useQuantity(basket , item.id) > 1 && <div
+                                                            className={"bi-dash-lg mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle "}
+                                                            onClick={() => dispatch(Decrease(item))}
+                                                            style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                        ></div>
+                                                    }
+                                                </div>
                                             </div>
 
                                         </div>

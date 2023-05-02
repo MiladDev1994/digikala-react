@@ -47,3 +47,5 @@ Route::post('varieties' , [VarietyController::class , 'varieties']);
 Route::get('product/{product}' , [HomeViewController::class , 'productDetails']);
 Route::post('favorite' , [HomeViewController::class , 'favorite']);
 Route::get('category/{category}' , [HomeViewController::class , 'category']);
+Route::get('comments/{product}' , [HomeViewController::class , 'comments']);
+Route::post('comment/store' , [HomeViewController::class , 'comment_store']);

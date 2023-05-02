@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Favorite;
 use App\Models\homeView;
 use App\Models\Product;
 use App\Models\Variety;
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Http\Request;
 use function Webmozart\Assert\Tests\StaticAnalysis\false;
 
@@ -91,5 +93,38 @@ class HomeViewController extends Controller
     public function category(Category $category){
         $Variety = Variety::query()->where('category_list' , 'like' , '%/'.$category->id.'/%')->with('product')->get();
         return response()->json($Variety);
+    }
+
+    public function comments(Product $product){
+
+        $comments = Comment::query()->where('product_id' , $product->id)->with('orders')->with('user')->get();
+//        dd($comments);
+        return response()->json($comments);
+    }
+
+    public function comment_store(Request $request){
+        $request->validate([
+            'score'=>'required',
+            'about'=>'required',
+            'proposal'=>'required',
+            'title'=>'required',
+        ]);
+
+        if($request->proposal === 'ok'){
+            $proposal = 1 ;
+        }else{
+            $proposal = 0 ;
+        }
+
+        Comment::create([
+            'product_id'=>$request->product,
+            'user_id'=>auth()->user()->id,
+            'text'=>$request->about,
+            'titr'=>$request->title,
+            'proposal'=>$proposal,
+            'active'=>0,
+            'score'=>$request->score,
+            'solar_date'=>Verta::now('iran'),
+        ]);
     }
 }

@@ -1,0 +1,37 @@
+
+.commentsBox{
+    display: flex;
+}
+.addBox{
+    width: 250px;
+}
+.usersBox{
+    width: calc(100% - 500px);
+    min-height: 400px;
+}
+.similarBox{
+    width: 250px;
+}
+
+@media (max-width: 1024px) {
+    .similarBox{
+        display: none;
+    }
+    .usersBox{
+        width: calc(100% - 250px);
+    }
+}
+
+@media (max-width: 700px) {
+    .commentsBox{
+        flex-direction: column;
+    }
+
+    .addBox{
+        width: 100%;
+        padding: 20px 40px !important;
+    }
+    .usersBox{
+        width: 100%;
+    }
+}

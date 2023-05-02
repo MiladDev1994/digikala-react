@@ -10,6 +10,13 @@
 .otherSellers{
     display: none;
 }
+.basketBtnBox{
+    transition: 0.3s;
+}
+.basketBtnBox:hover{
+    background-color: rgba(175, 14, 46, 0.4) !important;
+}
+
 @media (max-width: 1024px) {
     .bigBox{
         display: none;
