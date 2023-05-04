@@ -1,6 +1,6 @@
 
 const UseIsInBasket = (product , id) => {
-    let index = product.products.findIndex(item => item.id === id);
+    let index = product.findIndex(item => item.variety_id === id);
     if (index === -1){
         return false;
     }else {

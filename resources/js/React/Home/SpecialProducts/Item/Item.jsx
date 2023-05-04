@@ -10,8 +10,8 @@ const Item = ({item , index}) => {
     return (
         <Link
             key={item.id}
-            to={href ? `/${item.product[0].id}` : '/'}
-
+            to={href ? `product/${item.product[0].id}` : '/'}
+            target={href ? `_blank` : ''}
             className={`${index === 0 ? 'rounded-start' : index === 19 ? 'rounded-end' : ''} p-2 h-100 position-absolute bg-light ${styles.items}`}
             style={{right:`${index * 182}px`}}
             onMouseDown={() => setHref(true)}

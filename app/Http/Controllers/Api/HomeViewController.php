@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Basket;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Favorite;
@@ -126,5 +127,41 @@ class HomeViewController extends Controller
             'score'=>$request->score,
             'solar_date'=>Verta::now('iran'),
         ]);
+    }
+
+    public function basket_insert(Request $request){
+        $request->validate([
+            'variety_id'=>'required',
+            'product_id'=>'required',
+            'quantity'=>'required',
+            'price'=>'required',
+            'price_off'=>'required',
+        ]);
+
+        if ($request->action === 'ADD'){
+            Basket::create([
+                'variety_id'=>$request->variety_id,
+                'product_id'=>$request->product_id,
+                'quantity'=>$request->quantity,
+                'price'=>$request->price,
+                'price_off'=>$request->price_off,
+                'user_id'=>auth()->user()->id,
+            ]);
+        } elseif ($request->action === 'INCREASE'){
+            Basket::where('user_id' , auth()->user()->id)->where('variety_id' , $request->variety_id)->increment('quantity' , 1);
+        }elseif ($request->action === 'DECREASE'){
+            Basket::where('user_id' , auth()->user()->id)->where('variety_id' , $request->variety_id)->decrement('quantity' , 1);
+        } elseif ($request->action === 'REMOVE'){
+            Basket::where('user_id' , auth()->user()->id)->where('variety_id' , $request->variety_id)->delete();
+        }
+
+        $basket = Basket::query()->where('user_id' , auth()->user()->id)->with('product')->with('variety')->get();
+        return response()->json($basket);
+    }
+
+
+    public function basket_index(){
+        $basket = Basket::query()->where('user_id' , auth()->user()->id)->with('product')->with('variety')->get();
+        return response()->json($basket);
     }
 }

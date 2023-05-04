@@ -10,16 +10,40 @@ import {useSelector , useDispatch} from "react-redux";
 import {Add , Increase , Decrease , Remove} from "../../Redux/Basket/BasketAction";
 import useIsInBasket from "../Hook/BasketHooks/useIsInBasket";
 import useQuantity from "../Hook/BasketHooks/useQuantity";
-
+import {UserContext} from "../../Context/UseContextProvider";
+import {PermissionBasketContext} from "../Context/PermissionBasketContextProvider";
+import {BeatLoader} from "react-spinners";
 const OtherSellers = () => {
 
     const basket = useSelector(item => item.basket);
     const dispatch = useDispatch();
-console.log(basket)
     const {product , favorite} = useContext(ProductContext);
     const [productDown , setProductDown] = useState([])
     const {show , setShow} = useContext(ShowProductContext);
     const [filter , setFilter] = useState([]);
+
+    const {user} = useContext(UserContext)
+    const basketStart = useSelector(item => item.basketStart.data)
+    const [fetchBasket , setFetchBasket] = useState([]);
+    const {permission, setPermission} = useContext(PermissionBasketContext)
+    useEffect(() => {
+        const fetch = async () => {
+            setFetchBasket(await basket)
+        }
+        fetch();
+    } , [basket])
+
+    useEffect(() => {
+        setPermission(true);
+    } , [fetchBasket])
+
+    const basketHandler = (product , action) =>{
+        setPermission(false);
+        action === 'ADD' && dispatch(Add(product));
+        action === 'INCREASE' && dispatch(Increase(product));
+        action === 'DECREASE' && dispatch(Decrease(product));
+        action === 'REMOVE' && dispatch(Remove(product));
+    }
 
     useEffect(() => {
         setProductDown(useShowProduct(product).productDown)
@@ -69,7 +93,88 @@ console.log(basket)
                             </div>
 
                             <div style={{width: '19%'}} className={`${styles.basketBtn} pe-3 d-flex align-items-center justify-content-end`}>
-                                <button className={`btn   btn-danger shadow py-2  `}>افزودن به سبد خرید</button>
+                                <div className={ `w-75 bg-danger text-light rounded-2 text-center shadow overflow-hidden d-flex align-items-center justify-content-center` } style={{height: '44px'}} dir={'rtl'}>
+                                    {user.length ?
+                                        <>
+                                            {permission ?
+                                                <>
+                                                    {fetchBasket.active ?
+                                                        useIsInBasket(fetchBasket.products , item.id) ?
+                                                            <div
+                                                                className={`${useQuantity(fetchBasket.products , item.id) >= item.remain && `opacity-25`} bi-plus-lg mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle`}
+                                                                onClick={useQuantity(fetchBasket.products , item.id) < item.remain ? () => basketHandler(item , 'INCREASE') : null}
+                                                                style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                            ></div> :
+                                                            <div className={`w-100 h-100 p-2 bg-danger ${styles.basketBtnBox}`} onClick={() => basketHandler(item , 'ADD')} style={{transition:"0.3s", cursor: 'pointer'}}> افزودن به سبد خرید </div>
+                                                        :
+                                                        useIsInBasket(basketStart , item.id) ?
+                                                            <div
+                                                                className={`${useQuantity(basketStart , item.id) >= item.remain && `opacity-25`} bi-plus-lg mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle`}
+                                                                onClick={useQuantity(basketStart , item.id) < item.remain ? () => basketHandler(item , 'INCREASE') : null}
+                                                                style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                            ></div> :
+                                                            <div className={`w-100 h-100 p-2 bg-danger ${styles.basketBtnBox}`} onClick={() => basketHandler(item , 'ADD')} style={{transition:"0.3s", cursor: 'pointer'}}> افزودن به سبد خرید </div>
+
+                                                    }
+
+                                                    {fetchBasket.active ?
+                                                        useQuantity(fetchBasket.products , item.id) && <div
+                                                            className={" mt-2 m-2 d-flex align-items-center justify-content-center  text-dark h3 bg-danger p-1 rounded-circle"}
+                                                            style={{width: '30px', height: '30px',transition:"0.3s"}}
+                                                        >{useQuantity(fetchBasket.products , item.id)}</div> :
+                                                        useQuantity(basketStart , item.id) && <div
+                                                            className={" mt-2 m-2 d-flex align-items-center justify-content-center  text-dark h3 bg-danger p-1 rounded-circle"}
+                                                            style={{width: '30px', height: '30px',transition:"0.3s"}}
+                                                        >{useQuantity(basketStart , item.id)}</div>
+                                                    }
+
+                                                    {fetchBasket.active ?
+                                                        useQuantity(fetchBasket.products , item.id) === 1 && <div
+                                                            className={"bi-trash3 mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle "}
+                                                            onClick={() => basketHandler(item , 'REMOVE')}
+                                                            style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                        ></div> :
+                                                        useQuantity(basketStart , item.id) === 1 && <div
+                                                            className={"bi-trash3 mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle "}
+                                                            onClick={() => basketHandler(item , 'REMOVE')}
+                                                            style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                        ></div>
+                                                    }
+
+                                                    {fetchBasket.active ?
+                                                        useQuantity(fetchBasket.products , item.id) > 1 && <div
+                                                            className={"bi-dash-lg mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle "}
+                                                            onClick={() => basketHandler(item , 'DECREASE')}
+                                                            style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                        ></div> :
+                                                        useQuantity(basketStart , item.id) > 1 && <div
+                                                            className={"bi-dash-lg mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle "}
+                                                            onClick={() => basketHandler(item , 'DECREASE')}
+                                                            style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                        ></div>
+                                                    }
+                                                </>
+                                                :
+                                                <BeatLoader
+                                                    color="black"
+                                                    cssOverride={{}}
+                                                    loading
+                                                    speedMultiplier={2}
+                                                    size={10}
+                                                    margin={3}
+                                                    className={'opacity-50'}
+                                                />
+                                            }
+
+                                        </>
+
+
+
+
+                                        :
+                                        <Link to={'/login'} className={'w-100 h-100 text-light d-flex align-items-center justify-content-center'}>افزودن به سبد خرید</Link>
+                                    }
+                                </div>
                             </div>
 
                         </div>
@@ -125,36 +230,85 @@ console.log(basket)
 
                                             <div className={`${styles.basketBtn} d-flex align-items-center justify-content-center`}>
                                                 <div className={ `w-75 bg-danger rounded-2 text-center shadow overflow-hidden d-flex align-items-center justify-content-center` } style={{height: '44px'}} dir={'rtl'}>
-                                                    {
-                                                        useIsInBasket(basket , item.id) ?
-                                                            <div
-                                                                className={"bi-plus-lg mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle "}
-                                                                onClick={() => dispatch(Increase(item))}
-                                                                style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
-                                                            ></div> :
-                                                            <div className={`w-100 h-100 p-2 bg-danger ${styles.basketBtnBox}`} onClick={() => dispatch(Add(item))} style={{transition:"0.3s", cursor: 'pointer'}}> افزودن به سبد خرید </div>
-                                                    }
+                                                    {user.length ?
+                                                        <>
+                                                            {permission ?
+                                                                <>
+                                                                    {fetchBasket.active ?
+                                                                        useIsInBasket(fetchBasket.products , item.id) ?
+                                                                            <div
+                                                                                className={`${useQuantity(fetchBasket.products , item.id) >= item.remain && `opacity-25`} bi-plus-lg mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle`}
+                                                                                onClick={useQuantity(fetchBasket.products , item.id) < item.remain ? () => basketHandler(item , 'INCREASE') : null}
+                                                                                style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                                            ></div> :
+                                                                            <div className={`w-100 h-100 p-2 bg-danger ${styles.basketBtnBox}`} onClick={() => basketHandler(item , 'ADD')} style={{transition:"0.3s", cursor: 'pointer'}}> افزودن به سبد خرید </div>
+                                                                        :
+                                                                        useIsInBasket(basketStart , item.id) ?
+                                                                            <div
+                                                                                className={`${useQuantity(basketStart , item.id) >= item.remain && `opacity-25`} bi-plus-lg mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle`}
+                                                                                onClick={useQuantity(basketStart , item.id) < item.remain ? () => basketHandler(item , 'INCREASE') : null}
+                                                                                style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                                            ></div> :
+                                                                            <div className={`w-100 h-100 p-2 bg-danger ${styles.basketBtnBox}`} onClick={() => basketHandler(item , 'ADD')} style={{transition:"0.3s", cursor: 'pointer'}}> افزودن به سبد خرید </div>
 
-                                                    {
-                                                        useQuantity(basket , item.id) && <div
-                                                            className={" mt-2 m-2 d-flex align-items-center justify-content-center  text-dark h3 bg-danger p-1 rounded-circle"}
-                                                            style={{width: '30px', height: '30px',transition:"0.3s"}}
-                                                        >{useQuantity(basket , item.id)}</div>
-                                                    }
+                                                                    }
 
-                                                    {
-                                                        useQuantity(basket , item.id) === 1 && <div
-                                                            className={"bi-trash3 mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle "}
-                                                            onClick={() => dispatch(Remove(item))}
-                                                            style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
-                                                        ></div>
-                                                    }
-                                                    {
-                                                        useQuantity(basket , item.id) > 1 && <div
-                                                            className={"bi-dash-lg mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle "}
-                                                            onClick={() => dispatch(Decrease(item))}
-                                                            style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
-                                                        ></div>
+                                                                    {fetchBasket.active ?
+                                                                        useQuantity(fetchBasket.products , item.id) && <div
+                                                                            className={" mt-2 m-2 d-flex align-items-center justify-content-center  text-dark h3 bg-danger p-1 rounded-circle"}
+                                                                            style={{width: '30px', height: '30px',transition:"0.3s"}}
+                                                                        >{useQuantity(fetchBasket.products , item.id)}</div> :
+                                                                        useQuantity(basketStart , item.id) && <div
+                                                                            className={" mt-2 m-2 d-flex align-items-center justify-content-center  text-dark h3 bg-danger p-1 rounded-circle"}
+                                                                            style={{width: '30px', height: '30px',transition:"0.3s"}}
+                                                                        >{useQuantity(basketStart , item.id)}</div>
+                                                                    }
+
+                                                                    {fetchBasket.active ?
+                                                                        useQuantity(fetchBasket.products , item.id) === 1 && <div
+                                                                            className={"bi-trash3 mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle "}
+                                                                            onClick={() => basketHandler(item , 'REMOVE')}
+                                                                            style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                                        ></div> :
+                                                                        useQuantity(basketStart , item.id) === 1 && <div
+                                                                            className={"bi-trash3 mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle "}
+                                                                            onClick={() => basketHandler(item , 'REMOVE')}
+                                                                            style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                                        ></div>
+                                                                    }
+
+                                                                    {fetchBasket.active ?
+                                                                        useQuantity(fetchBasket.products , item.id) > 1 && <div
+                                                                            className={"bi-dash-lg mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle "}
+                                                                            onClick={() => basketHandler(item , 'DECREASE')}
+                                                                            style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                                        ></div> :
+                                                                        useQuantity(basketStart , item.id) > 1 && <div
+                                                                            className={"bi-dash-lg mt-2 m-2 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle "}
+                                                                            onClick={() => basketHandler(item , 'DECREASE')}
+                                                                            style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
+                                                                        ></div>
+                                                                    }
+                                                                </>
+                                                                :
+                                                                <BeatLoader
+                                                                    color="black"
+                                                                    cssOverride={{}}
+                                                                    loading
+                                                                    speedMultiplier={2}
+                                                                    size={10}
+                                                                    margin={3}
+                                                                    className={'opacity-50'}
+                                                                />
+                                                            }
+
+                                                        </>
+
+
+
+
+                                                        :
+                                                        <Link to={'/login'} className={'w-100 h-100 text-light d-flex align-items-center justify-content-center'}>افزودن به سبد خرید</Link>
                                                     }
                                                 </div>
                                             </div>

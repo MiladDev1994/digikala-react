@@ -7,6 +7,8 @@ import BrandsReducer from "./Brands/BrandsReducer";
 import ArticlesReducer from "./Articles/ArticlesReducer";
 import TypesReducer from "./Types/TypesReducer";
 import BasketReducer from "./Basket/BasketReducer";
+import BasketStartReducer from "./BasketStart/BasketStartReducer";
+import OrderReducer from "./Order/OrderReducer";
 
 
 const rootReducer = combineReducers({
@@ -18,6 +20,8 @@ const rootReducer = combineReducers({
     articles: ArticlesReducer,
     types: TypesReducer,
     basket: BasketReducer,
+    basketStart: BasketStartReducer,
+    order: OrderReducer,
 })
 
 export default rootReducer;

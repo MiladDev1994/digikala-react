@@ -1,0 +1,64 @@
+.box{
+    width: 1300px;
+    margin: auto;
+    display: flex;
+    align-items: stretch;
+}
+.userDataBox{
+    width: 300px;
+}
+.userDadeSticky{
+    width: 100%;
+    position: sticky;
+    top: 180px;
+    background-color: #2a2a2a;
+}
+.linkHover{
+    transition: 0.3s;
+}
+.linkHover:hover{
+    background-color: #3f3f3f;
+    cursor: pointer;
+}
+
+.detailBox{
+    width: calc(100% - 300px);
+}
+.allOrder{
+    background-color: #2a2a2a;
+}
+.component{
+    background-color: #2a2a2a;
+}
+
+.destroyOrderBtn{
+    left: 0;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    background-color: #1f1f1f;
+}
+.destroyOrderBtn:hover{
+    background-color: #343434;
+    cursor: pointer;
+}
+@media (max-width: 1300px) {
+    .box{
+        width: 100%;
+    }
+}
+@media (max-width: 1024px) {
+    .box{
+        flex-direction: column;
+    }
+    .userDataBox{
+        width: 100%;
+    }
+    .detailBox{
+        width: 100%;
+    }
+}

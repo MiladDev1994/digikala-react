@@ -1,21 +1,17 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import styles from './Similar.module.css';
+import styles from './Favorite.module.css';
 import axios from "axios";
 import Item from "./Item/Item";
-import {ProductContext} from "../Context/ProductContexProvider";
+import {BeatLoader} from "react-spinners";
 
+const Favorite = () => {
 
-const Similar = () => {
-
-    const {product , favorite} = useContext(ProductContext);
     const [similarProduct , setSimilarProduct] = useState([])
 
     useEffect(() => {
-        product.length &&
-            axios.get(`http://127.0.0.1:8000/api/category/${product[0].category_list.split('/')[product[0].category_list.split('/').length-2]}`)
-                .then(response => setSimilarProduct(response.data))
-            // console.log()
-    } , [product])
+        axios.get(`http://127.0.0.1:8000/api/favorite/index`)
+            .then(response => setSimilarProduct(response.data))
+    } , [])
 
 
     const dragBox = useRef();
@@ -59,24 +55,35 @@ const Similar = () => {
     } , [])
 
     return (
-        <div className={'w-100 mt-5 mb-4'} dir={'rtl'}>
-            <h5 className={'px-3 text-light opacity-50 py-1'}>محصولات مشابه</h5>
+        <div className={'w-100 py-2 '} dir={'rtl'}>
+            {/*<h5 className={'px-3 text-light opacity-50 py-1'}>محصولات مشابه</h5>*/}
             <div className={`${styles.box} m-auto position-relative`}>
                 <div
                     ref={dragBox}
-                    className={`shadow w-100 shadow ${styles.main}`}
+                    className={` w-100  ${styles.main} rounded-3`}
                     onMouseDown={clickHandler}
                     onMouseMove={moveHandler}
                     onMouseUp={upHandler}
                     onMouseLeave={upHandler}
                 >
-                    <div className={'d-flex align-items-center justify-content-start '} >
-                        <div className={`position-relative ${styles.productBox}`}>
+                    <div className={'d-flex align-items-center justify-content-start'} >
+                        <div className={`position-relative ${styles.productBox} `}>
                             {similarProduct.length ?
                                 similarProduct.map((item , index) => index < 20 ?
                                     <Item key={item.id} item={item} index={index}/> : null
                                 )
-                                :null
+                                :
+                                <div className={'w-100 h-100 d-flex align-items-center justify-content-center'}>
+                                    <BeatLoader
+                                        color="white"
+                                        cssOverride={{}}
+                                        loading
+                                        speedMultiplier={1}
+                                        size={25}
+                                        margin={10}
+                                        className={'opacity-50'}
+                                    />
+                                </div>
                             }
                         </div>
                     </div>
@@ -98,4 +105,4 @@ const Similar = () => {
     );
 };
 
-export default Similar;
+export default Favorite;

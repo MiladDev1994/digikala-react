@@ -6,25 +6,41 @@ import digiLogo from '../../../../../public/image/logo.svg';
 import Dropdown from 'react-bootstrap/Dropdown';
 import personLogo from '../../../../../public/image/df110dcf.svg'
 import axios from "axios";
+import {useSelector} from "react-redux";
+import useSumQuantity from "../../Hooks/useSumQuantity";
+import {PermissionBasketContext} from "../../Product/Context/PermissionBasketContextProvider";
+
 
 const Search = () => {
+
+    const basketStart = useSelector(item => item.basketStart.data)
+    const basket = useSelector(item => item.basket)
     const {user , setUser} = useContext(UserContext);
     const logoWidth = useRef();
     const basketWidth = useRef();
     const selectionWidth = useRef();
     const [searchView , setSearchView] = useState(false);
     const [searchValue , setSearchValue] = useState('')
+    const [fetchBasket , setFetchBasket] = useState([]);
+    const {permission, setPermission} = useContext(PermissionBasketContext)
+
+    useEffect(() => {
+        const fetch = async () => {
+            setFetchBasket(await basket)
+        }
+        fetch();
+    } , [basket])
 
     const logOutHandler = () => {
         axios.post('/api/logOut' , {
             logOut: true
         })
-            .then(respons => {
-                setUser(respons.data)
+            .then(response => {
+                setUser(response.data)
             })
             .catch(error => console.log('no'))
     }
-
+    // console.log(basket)
     return (
         <div className={`text-light px-4 d-flex align-items-center justify-content-center bg-dark ${styles.searchBox}`} dir={'rtl'}>
             <div ref={selectionWidth} className={`${styles.selection} d-flex align-items-center justify-content-between`}>
@@ -89,33 +105,6 @@ const Search = () => {
                 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <div ref={basketWidth} className={`align-items-center justify-content-around px-2 ${styles.basketBox}`}>
 
                 {/*LogIn*/}
@@ -126,23 +115,23 @@ const Search = () => {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu className={`${styles.dropdownMenu} bg-dark text-light shadow p-0`}>
-                        <Link to={'#'} className={'d-flex align-items-center justify-content-between px-3 py-2'}>
+                        <Link to={'/userPanel/order/sending'} className={'d-flex align-items-center justify-content-between px-3 py-2'}>
                         <img src={personLogo}/>
                         <h5>{user[0].name}</h5>
                         <i className={'bi-chevron-left'} />
                         </Link>
-                        <Link to={'#'} className={'d-flex align-items-center justify-content-start px-4'}>
+                        <Link to={'/userPanel/order/sending'} className={'d-flex align-items-center justify-content-start px-4'}>
                         <i className={'bi-bag h5 me-2'} />
                         <p className={'mt-1'}>سفارشات</p>
                         </Link>
-                        <Link to={'#'} className={'d-flex align-items-center justify-content-start px-4'}>
+                        <Link to={'/userPanel/favorite'} className={'d-flex align-items-center justify-content-start px-4'}>
                         <i className={'bi-heart  h5 me-2'} />
                         <p className={'mt-1'}>علاقه&zwnj;مندی</p>
                         </Link>
-                        <Link onClick={logOutHandler} className={'d-flex align-items-center justify-content-start px-4'} style={{border:0}}>
+                        <a onClick={logOutHandler} className={'d-flex align-items-center justify-content-start px-4'} style={{border:0}}>
                         <i className={'bi-box-arrow-right h5 me-2'} />
                         <p className={'mt-1'}>خروج از حساب کاربری</p>
-                        </Link>
+                        </a>
                         </Dropdown.Menu>
                         </Dropdown>
                         :
@@ -154,7 +143,19 @@ const Search = () => {
                         </div>
                     }
 
-                    <i className={"bi-bag h4 mt-1"} />
+                    <Link to={user.length ? '/basket' : '/login'} className={"bi-bag h4 mt-1 text-light position-relative"}>
+                        {user.length ?
+                            <>
+                                {fetchBasket.active ?
+                                useSumQuantity(fetchBasket.products).sumQuantity ? <div className={`bg-danger rounded-circle  ${styles.basketNumber}`}>{useSumQuantity(fetchBasket.products).sumQuantity}</div> : null:
+                                useSumQuantity(basketStart).sumQuantity ? <div className={`bg-danger rounded-circle  ${styles.basketNumber}`}>{useSumQuantity(basketStart).sumQuantity}</div> : null
+                                }
+                            </>
+                            : null
+                        }
+
+
+                    </Link>
 
                 </div>
 
