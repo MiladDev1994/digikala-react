@@ -1,0 +1,78 @@
+.box{
+    width: 1300px;
+    margin: auto;
+    min-height: 500px;
+}
+
+.detailBox{
+    width: calc(100% - 300px);
+}
+.priceBox{
+    width: 300px;
+    transition: 0.3s;
+}
+.stickyBox{
+    position: sticky;
+    height: 300px;
+    background-color: #2a2a2a;
+    top: 186px;
+}
+.products{
+    background-color: #2a2a2a;
+    /*height: 300px;*/
+}
+.cleanBtn{
+    width: 32px;
+    height: 32px;
+    background-color: #212121;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.3s;
+    position: relative;
+}
+.cleanBtn:hover{
+    background-color: #3f3f3f;
+    cursor: pointer;
+}
+.cleanBtnMessage{
+    white-space: nowrap;
+    font-size: 12px;
+    position: absolute;
+    top: 0;
+    right: -100px;
+    opacity: 0.7;
+    display: none;
+}
+.cleanBtn:hover .cleanBtnMessage{
+    display: block;
+}
+
+@media (max-width: 1300px) {
+    .box{
+        width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .detailBox{
+        width: 100%;
+    }
+    .priceBox{
+        position: fixed;
+        height: 100px;
+        background-color: #2a2a2a;
+        bottom: 0;
+        width: 100%;
+        z-index: 1;
+        padding: 0!important;
+    }
+
+    .stickyBox{
+        position: unset;
+        height: 100%;
+        background-color: #2a2a2a;
+        border-radius: 0!important;
+    }
+}

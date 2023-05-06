@@ -62,7 +62,7 @@ const Article = () => {
                 </div>
 
                 <div className={`${styles.menu} p-3`}>
-                    <div className={`${styles.menuMain} border border-secondary border-opacity-50 rounded-4 shadow`}>
+                    <div className={`${styles.menuMain} rounded-4 shadow`}>
                         <div className={`${styles.menuBox}`}>
 
                             {filterData.length ?

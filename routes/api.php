@@ -55,3 +55,4 @@ Route::get('comments/{product}' , [HomeViewController::class , 'comments']);
 Route::post('comment/store' , [HomeViewController::class , 'comment_store']);
 Route::post('basket/insert' , [HomeViewController::class , 'basket_insert']);
 Route::get('basket/index' , [HomeViewController::class , 'basket_index']);
+Route::get('comment/index' , [HomeViewController::class , 'comment_index']);

@@ -1,0 +1,17 @@
+.rightBox{
+    width: 130px;
+}
+.leftBox{
+    width: calc(100% - 130px);
+}
+.animate{
+    background-color: #ffde00;
+    animation: danger 0.5s linear alternate infinite;
+}
+
+@keyframes danger {
+    100%{background-color: #931c1c;}
+}
+
+
+

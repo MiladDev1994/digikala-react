@@ -26,7 +26,6 @@ const Sending = () => {
             }))
     }
 
-
     return (
         <div className={'p-3'}>
             <h5 className={'opacity-50 py-2'}>سفارشات جاری</h5>

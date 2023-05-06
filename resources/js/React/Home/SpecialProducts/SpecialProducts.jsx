@@ -36,10 +36,10 @@ const SpecialProducts = () => {
     }
 
     const rightHandler = () => {
-        dragBox.current.scrollLeft += 182;
+        dragBox.current.scrollLeft += 180;
     }
     const leftHandler = () => {
-        dragBox.current.scrollLeft -= 182;
+        dragBox.current.scrollLeft -= 180;
     }
 
     useEffect(() => {
@@ -62,11 +62,11 @@ const SpecialProducts = () => {
                     onMouseUp={upHandler}
                     onMouseLeave={upHandler}
                 >
-                    <div className={'d-flex align-items-center justify-content-start px-3'} style={{width:'3834px'}}>
+                    <div className={'d-flex align-items-center justify-content-start px-3'} >
                         <div className={`${styles.logo} d-flex align-items-center justify-content-center flex-column p-1`}>
                             <img src={Text}/>
                             <img src={Logo}/>
-                            <Link to={1} className={'link-light'}>
+                            <Link to={'shop/special-on'} className={'link-light'}>
                                 <p>مشاهده همه</p>
                             </Link>
                         </div>

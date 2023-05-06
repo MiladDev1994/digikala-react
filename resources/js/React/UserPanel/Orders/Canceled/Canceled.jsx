@@ -7,7 +7,7 @@ const Canceled = () => {
 
     const {sendingOrder , setSendingOrder} = useContext(OrderContext)
     const sendingOrderFirst = useSelector(item => item.order.data).filter(element => element.order_status === 'canceled');
-console.log(sendingOrder)
+
     return (
         <div className={'p-3'}>
             <h5 className={'opacity-50 py-2'}>سفارشات لغو شده</h5>

@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 const Sent = () => {
 
     const sendingOrderFirst = useSelector(item => item.order.data).filter(element => element.order_status === 'sent');
-
     return (
         <div className={'p-3'}>
             <h5 className={'opacity-50 py-2'}>سفارشات ارسال شده</h5>

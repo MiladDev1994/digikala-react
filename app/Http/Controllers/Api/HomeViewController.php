@@ -130,12 +130,13 @@ class HomeViewController extends Controller
     }
 
     public function basket_insert(Request $request){
-        $request->validate([
+         $request->validate([
             'variety_id'=>'required',
             'product_id'=>'required',
             'quantity'=>'required',
             'price'=>'required',
             'price_off'=>'required',
+            'type'=>'required',
         ]);
 
         if ($request->action === 'ADD'){
@@ -145,6 +146,7 @@ class HomeViewController extends Controller
                 'quantity'=>$request->quantity,
                 'price'=>$request->price,
                 'price_off'=>$request->price_off,
+                'type_id'=>$request->type,
                 'user_id'=>auth()->user()->id,
             ]);
         } elseif ($request->action === 'INCREASE'){
@@ -155,13 +157,19 @@ class HomeViewController extends Controller
             Basket::where('user_id' , auth()->user()->id)->where('variety_id' , $request->variety_id)->delete();
         }
 
-        $basket = Basket::query()->where('user_id' , auth()->user()->id)->with('product')->with('variety')->get();
+        $basket = Basket::query()->where('user_id' , auth()->user()->id)->with('product')->with(['variety'=> ['warranty', 'user' , 'product' , 'type']])->with('type')->get();
         return response()->json($basket);
     }
 
 
     public function basket_index(){
-        $basket = Basket::query()->where('user_id' , auth()->user()->id)->with('product')->with('variety')->get();
+        $basket = Basket::query()->where('user_id' , auth()->user()->id)->with('product')->with(['variety'=> ['warranty', 'user' , 'product' , 'type']])->with('type')->get();
         return response()->json($basket);
+    }
+
+
+    public function comment_index(){
+        $comment = Comment::query()->where('user_id' , auth()->user()->id)->where('active' , 1)->with('product')->get();
+        return response()->json($comment);
     }
 }

@@ -3,13 +3,15 @@ import axios from "axios";
 const initialBasket = {products: [], active: false}
 
 const testHandler = async (product , action) => {
+
     const response = await axios.post('/api/basket/insert' , {
         variety_id: product.id,
         product_id: product.product[0].id,
         quantity: 1,
         price: product.price,
         price_off: product.price_off,
-        action: action
+        action: action,
+        type: product.type.id,
     })
     return {
         products: response.data,

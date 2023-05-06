@@ -9,13 +9,17 @@ class Basket extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['variety_id' , 'product_id' , 'quantity' , 'price' , 'price_off' , 'user_id'];
+    protected $fillable = ['variety_id' , 'product_id' , 'quantity' , 'price' , 'price_off' , 'user_id' , 'type_id'];
 
     public function variety(){
         return $this->hasOne(Variety::class , 'id' , 'variety_id');
     }
 
     public function product(){
-        return $this->hasOne(Product::class , 'id' , 'product_id');
+        return $this->hasMany(Product::class , 'id' , 'product_id');
+    }
+
+    public function type(){
+        return $this->hasOne(Color::class , 'id' , 'type_id');
     }
 }

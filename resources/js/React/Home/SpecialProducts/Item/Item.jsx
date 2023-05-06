@@ -12,13 +12,13 @@ const Item = ({item , index}) => {
             key={item.id}
             to={href ? `product/${item.product[0].id}` : '/'}
             target={href ? `_blank` : ''}
-            className={`${index === 0 ? 'rounded-start' : index === 19 ? 'rounded-end' : ''} p-2 h-100 position-absolute bg-light ${styles.items}`}
-            style={{right:`${index * 182}px`}}
+            className={`${index === 0 ? 'rounded-start' : index === 19 ? 'rounded-end' : ''} p-2 h-100 position-absolute text-light border-end border-danger border-opacity-50 ${styles.items}`}
+            style={{right:`${index * 180}px`}}
             onMouseDown={() => setHref(true)}
             onMouseMove={() => setHref(false)}
         >
             <div style={{width: '100%', height: '164px'}}>
-                <img width={'100%'} src={`http://127.0.0.1:8000/images/${item.product[0].image.split(',')[0]}`} />
+                <img width={'100%'} src={`http://127.0.0.1:8000/images/${item.product[0].image.split(',')[0]}`} className={'rounded-2 shadow'}/>
             </div>
 
             <div className={`${styles.detail} mt-4`}>
@@ -34,7 +34,7 @@ const Item = ({item , index}) => {
                 </div>
                 {
                     item.price !== item.price_off ?
-                        <div className={`${styles.price} text-center mt-2`}>{item.price}</div>
+                        <div className={`${styles.price} text-center mt-2 opacity-50`}>{item.price}</div>
                         : null
                 }
             </div>

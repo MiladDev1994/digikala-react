@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styles from './UserPanel.module.css';
 import userLogo from '../../../../public/image/df110dcf.svg'
 import {UserContext} from "../Context/UseContextProvider";
@@ -14,19 +14,20 @@ import {useSelector , useDispatch} from "react-redux";
 import {fetchOrderApi} from "../Redux/Order/OrderAction";
 import Favorite from "./Favorite/Favorite";
 import {OrderContext} from "../Context/OrderContextProvider";
+import Comment from "./Comment/Comment";
 
 const UserPanel = () => {
 
     const {sendingOrder , setSendingOrder} = useContext(OrderContext)
     const {user , setUser} = useContext(UserContext)
     const dispatch = useDispatch();
+    const [comment , setComment] = useState([]);
 
     const sendingCount = useSelector(item => item.order.data).filter(element => element.order_status === 'sending').length;
     const sentCount = useSelector(item => item.order.data).filter(element => element.order_status === 'sent').length;
     const canceledCount = useSelector(item => item.order.data).filter(element => element.order_status === 'canceled').length;
     const location = useLocation();
 
-    console.log(sendingOrder)
     const logOutHandler = () => {
         axios.post('/api/logOut' , {
             logOut: true
@@ -39,6 +40,8 @@ const UserPanel = () => {
 
     useEffect(() => {
         dispatch(fetchOrderApi())
+        axios.get('http://127.0.0.1:8000/api/comment/index')
+            .then(response => setComment(response.data))
     } , [])
 
     return (
@@ -69,7 +72,7 @@ const UserPanel = () => {
                                 }
                             </div>
 
-                            <Link to={'sending'} className={`d-flex align-items-center justify-content-start ${location.pathname.includes('order') ? `text-danger` : `text-light`}  opacity-75 mt-2 rounded-3 px-2 ${styles.linkHover}`}>
+                            <Link to={'order/sending'} className={`d-flex align-items-center justify-content-start ${location.pathname.includes('order') ? `text-danger` : `text-light`}  opacity-75 mt-2 rounded-3 px-2 ${styles.linkHover}`}>
                                 <i className={'bi-bag py-2 h5 px-2'} />
                                 <h5 className={''}>سفارشات</h5>
                             </Link>
@@ -120,6 +123,7 @@ const UserPanel = () => {
                                 <Route path={'order/sent'} element={< Sent/>} />
                                 <Route path={'order/canceled'} element={< Canceled/>} />
                                 <Route path={'favorite'} element={< Favorite/>} />
+                                <Route path={'Comment'} element={< Comment comment={comment}/>} />
                             </Routes>
 
                         </div>
