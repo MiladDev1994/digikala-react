@@ -17,7 +17,7 @@ const Item = ({product , index}) => {
                         {product.price_off !== product.price ?
                             <>
                                 <div className={`${styles.off} bg-danger px-2 rounded-pill`}>{`${Math.round((1 - (product.price_off / product.price)) * 100)}%`}</div>
-                                <div className={`opacity-50 ${styles.priceOff}`}>{product.price.toLocaleString()}</div>
+                                <div className={`opacity-50 ${styles.priceOff}`}>{(product.price / 10).toLocaleString()}</div>
                             </>
                             : null
                         }
@@ -25,7 +25,7 @@ const Item = ({product , index}) => {
                     </div>
 
                     <div className={`d-flex align-items-center justify-content-center text-light ${styles.price}`}>
-                        <h5 className={'mt-2'}>{product.price_off.toLocaleString()}</h5>
+                        <h5 className={'mt-2'}>{(product.price_off / 10).toLocaleString()}</h5>
                         <img src={Toman}/>
                     </div>
                 </div>

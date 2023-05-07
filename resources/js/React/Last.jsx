@@ -15,8 +15,7 @@ import PermissionBasketContextProvider from "./Product/Context/PermissionBasketC
 import UserPanel from "./UserPanel/UserPanel";
 import {UserContext} from "./Context/UseContextProvider";
 import OrderContextProvider from "./Context/OrderContextProvider";
-import Basket from "./Basket/Basket";
-
+import BasketRoute from "./Basket/BasketRoute";
 const Last = () => {
 
     const {user} = useContext(UserContext)
@@ -42,7 +41,7 @@ const Last = () => {
                                     <Route path={'/shop/:id'} element={ <Shop /> } />
                                     <Route path={'/product/:id'} element={ <Index /> } />
                                     <Route path={'/userPanel/*'} element={ !user.length ?  <Navigate to={'/'} /> : <UserPanel /> } />
-                                    <Route path={'/basket'} element={ !user.length ?  <Navigate to={'/'} /> : <Basket /> } />
+                                    <Route path={'/basket/*'} element={ !user.length ?  <Navigate to={'/'} /> : <BasketRoute /> } />
                                 </Routes>
                             </div>
                             < Footer />

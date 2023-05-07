@@ -1,0 +1,35 @@
+@media (max-width: 1024px) {
+    .box{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .priceBox{
+        width: 250px;
+    }
+    .btnBox{
+        width: 250px!important;
+
+    }
+
+}
+
+@media (max-width: 600px) {
+    .box{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+    .priceBox{
+        width: 90%;
+    }
+    .btnBox{
+        width: 90%!important;
+
+    }
+    .link{
+        margin-top: 10px!important;
+    }
+
+}

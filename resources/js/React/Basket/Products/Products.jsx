@@ -161,9 +161,11 @@ const Products = () => {
                                 <div className={`d-flex align-items-center justify-content-center mt-3`}>
                                     <div className={ `w-100 bg-danger rounded-2 text-center shadow overflow-hidden d-flex align-items-center justify-content-center` } style={{height: '44px'}} dir={'rtl'}>
 
+                                        {permission ?
+                                            <>
                                         <div
                                             className={`${item.quantity >= item.variety.remain && `opacity-25`} bi-plus-lg mt-2 m-1 d-flex align-items-center justify-content-center shadow text-dark h5  p-1 rounded-circle`}
-                                            onClick={item.quantity >= item.variety.remain ? () => basketHandler(item.variety , 'INCREASE') : null}
+                                            onClick={item.quantity < item.variety.remain ? () => basketHandler(item.variety , 'INCREASE') : null}
                                             style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
                                         ></div>
 
@@ -186,6 +188,21 @@ const Products = () => {
                                                 onClick={() => basketHandler(item.variety , 'DECREASE')}
                                                 style={{width: '30px', height: '30px',transition:"0.3s", cursor: 'pointer'}}
                                             />
+                                        }
+                                            </>
+
+                                            :
+                                            <div className={'w-100 h-100 d-flex align-items-center justify-content-center'}>
+                                                <BeatLoader
+                                                    color="black"
+                                                    cssOverride={{}}
+                                                    loading
+                                                    speedMultiplier={2}
+                                                    size={10}
+                                                    margin={3}
+                                                    className={'opacity-50'}
+                                                />
+                                            </div>
                                         }
 
                                     </div>
