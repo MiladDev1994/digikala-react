@@ -25,9 +25,9 @@ const BasketRoute = () => {
         <Routes>
             <Route path={'/'} element={<Basket />} />
             <Route path={'pay'} element={fetchBasket.active ?
-                changeQuantityHandler(fetchBasket.products) ? <Navigate to={'/'} /> : <Pay />
+                changeQuantityHandler(fetchBasket.products) ? <Navigate to={'/'} /> : <Pay basket={fetchBasket.products} />
                 :
-                changeQuantityHandler(basketStart) ? <Navigate to={'/'} /> : <Pay />
+                changeQuantityHandler(basketStart) ? <Navigate to={'/'} /> : <Pay basket={basketStart}/>
             } />
         </Routes>
 

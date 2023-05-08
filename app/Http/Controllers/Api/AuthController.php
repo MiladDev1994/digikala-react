@@ -54,11 +54,12 @@ class AuthController extends Controller
         }else{
             return response()->json([]);
         }
-
     }
 
     public function logOut(Request $request){
         if ($request->logOut) Auth::logout();
         return response()->json([]);
     }
+
+
 }

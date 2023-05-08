@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\categoryController;
+use App\Http\Controllers\Api\DateController;
 use App\Http\Controllers\Api\FavoriteController;
 use App\Http\Controllers\Api\HomeViewController;
 use App\Http\Controllers\Api\OrderController;
@@ -40,6 +41,7 @@ Route::apiResource('brands' , BrandController::class);
 Route::apiResource('articles' , ArticleController::class);
 Route::apiResource('types' , TypesController::class);
 Route::apiResource('order' , OrderController::class);
+Route::apiResource('date' , DateController::class);
 
 Route::get('loginedIn' , [AuthController::class , 'loginedIn']);
 Route::post('register' , [AuthController::class , 'register']);
